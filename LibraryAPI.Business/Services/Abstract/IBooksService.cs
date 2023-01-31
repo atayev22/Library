@@ -9,6 +9,6 @@ namespace LibraryAPI.Business.Services.Abstract
 {
     public interface IBooksService
     {
-        IQueryable<FN_GetBooksBrowse> GetBooksBrowse();
+        IEnumerable<FN_GetBooksBrowse> GetBooksBrowse();
     }
 }
