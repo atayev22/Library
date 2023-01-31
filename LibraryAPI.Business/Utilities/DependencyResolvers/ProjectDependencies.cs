@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using LibraryAPI.DataAccess.Infrastructure.Repositories.Abstract;
+using LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,7 @@ namespace LibraryAPI.Business.Utilities.DependencyResolvers
 
 
             //Repositories
+            services.AddScoped(typeof(IEntityBaseRepository<>), typeof(EntityBaseRepository<>));
         }
     }
 }
