@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,14 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Business.Utilities.DependencyResolvers
 {
-    public class ProjectDependencies
+    public static class ProjectDependencies
     {
-        // Services
+        public static void AddProjectDependencies(this IServiceCollection services)
+        {
+            // Services
 
-        //Repositories
+
+            //Repositories
+        }
     }
 }
