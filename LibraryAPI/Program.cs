@@ -1,3 +1,5 @@
+using AutoMapper;
+using LibraryApi.BaseLog.Utilities.Mapper;
 using LibraryAPI.Business.Utilities.DependencyResolvers;
 using LibraryAPI.DataAccess;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +13,17 @@ builder.Services.AddDbContext<AppDbContext>(
                     builder.Configuration.GetConnectionString("DefaultConnection")
                     )
                 );
+#endregion
+
+#region AutoMapper
+
+var mapConfiq = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MapperProfile());
+});
+
+builder.Services.AddSingleton(mapConfiq.CreateMapper());
+
 #endregion
 
 #region Dependencies

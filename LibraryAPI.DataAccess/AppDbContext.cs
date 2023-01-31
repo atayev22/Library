@@ -11,7 +11,7 @@ namespace LibraryAPI.DataAccess
 {
     public class AppDbContext : DbContext
     {
-        protected AppDbContext()
+        public AppDbContext()
         {
 
         }

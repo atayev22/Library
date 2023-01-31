@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\FnModels\" />
     <Folder Include="Entities\SpModels\" />
   </ItemGroup>
 

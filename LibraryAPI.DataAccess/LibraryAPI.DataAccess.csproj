@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Utilities\Tools\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\LibraryAPI.Core\LibraryAPI.Core.csproj" />
   </ItemGroup>
 

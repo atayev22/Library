@@ -51,7 +51,7 @@ namespace LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete
 
         }
 
-        public IQueryable<TEntity> Get()
+        public IQueryable<TEntity> GetAll()
         {
             return dbSet;
         }
