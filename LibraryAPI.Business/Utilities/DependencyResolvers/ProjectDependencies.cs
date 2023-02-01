@@ -3,6 +3,8 @@ using LibraryAPI.Business.Services.Concrete;
 using LibraryAPI.DataAccess;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Abstract;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete;
+using LibraryAPI.DataAccess.Repositories.Abstract;
+using LibraryAPI.DataAccess.Repositories.Concrete;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -17,9 +19,10 @@ namespace LibraryAPI.Business.Utilities.DependencyResolvers
         public static void AddProjectDependencies(this IServiceCollection services)
         {
             // Services
-            services.AddScoped<IBooksService,BookService>();
+            services.AddScoped<IBooksService, BookService>();
 
             //Repositories
+            services.AddScoped<IBooksRepository, BooksRepository>();
             services.AddScoped(typeof(IEntityBaseRepository<>), typeof(EntityBaseRepository<>));
 
             //OnConfiguring

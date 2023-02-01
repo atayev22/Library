@@ -22,7 +22,7 @@ namespace LibraryAPI.Business.Services.Concrete
 
         public IEnumerable<FN_GetBooksBrowse> GetBooksBrowse()
         {
-            int pageCount = 6;
+            string pageCount = "200";
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.AddParam("pageCount", pageCount);
 

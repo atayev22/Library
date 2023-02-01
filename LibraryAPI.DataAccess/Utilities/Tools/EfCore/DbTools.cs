@@ -15,9 +15,9 @@ namespace LibraryAPI.DataAccess.Infrastructure.Tools.EfCore
         {
             using var context = new AppDbContext();
 
-            var parametersList = parameters != null ? string.Join(", ", parameters.Select(p => p.ParameterName)) : "";
+            var parametersList = parameters != null ? string.Join(", ", parameters.Select(s=> s.Value)) : "";
 
-            string query = $"SELECT * FROM {procedureName} {parametersList}";
+            string query = $"SELECT * FROM {procedureName}({parametersList})";
 
             return context.Set<T>().FromSqlRaw(query, parametersList.ToArray()).ToList();
         }
