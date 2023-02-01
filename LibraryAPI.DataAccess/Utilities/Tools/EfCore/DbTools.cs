@@ -1,5 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using LibraryAPI.DataAccess.Entities.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +22,8 @@ namespace LibraryAPI.DataAccess.Infrastructure.Tools.EfCore
 
             string query = $"SELECT * FROM {procedureName}({parametersList})";
 
-            return context.Set<T>().FromSqlRaw(query, parametersList.ToArray()).ToList();
+            //var data = context.Database.SqlQuery<T>(query); 
+            return context.Set<T>().FromSqlRaw(query).ToList();//context.Set<T>().FromSqlRaw(query, parametersList.ToArray()).ToList();
         }
 
         public static void AddParam(this IList<SqlParameter> list, string paramName, object paramValue)
