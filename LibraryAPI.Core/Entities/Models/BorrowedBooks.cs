@@ -12,6 +12,7 @@ namespace LibraryAPI.DataAccess.Entities.Models
         public DateTime LendDate { get; set; }
         public DateTime ReturnDate { get; set; }
 
+
         //Relations
         public int BookId { get; set; }
         public Books? Book { get; set; }

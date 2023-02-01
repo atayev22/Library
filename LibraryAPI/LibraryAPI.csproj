@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibraryAPI.Business\LibraryAPI.Business.csproj" />
+    <ProjectReference Include="..\LibraryAPI.Core\LibraryAPI.Core.csproj" />
   </ItemGroup>
 
 </Project>

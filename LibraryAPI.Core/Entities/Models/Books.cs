@@ -14,6 +14,7 @@ namespace LibraryAPI.DataAccess.Entities.Models
         public int PageCount { get; set; }
         public DateTime PubDate { get; set; }
 
+
         //Relations
         public int AuthorId { get; set; }
         public Authors? Author { get; set; }

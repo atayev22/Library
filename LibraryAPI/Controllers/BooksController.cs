@@ -1,5 +1,5 @@
 ﻿using LibraryApi.BaseLog.Entities.Dtos;
-using LibraryApi.BaseLog.Infrastructure.Repositories.Abstract;
+using LibraryAPI.Business.Services.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -10,11 +10,11 @@ namespace LibraryAPI.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly IBooksRepository _booksRepository;
+        private readonly IBooksService _booksService;
 
-        public BooksController(IBooksRepository booksRepository)
+        public BooksController(IBooksService booksRepository)
         {
-            _booksRepository = booksRepository;
+            _booksService = booksRepository;
         }
 
         [HttpGet]
@@ -22,7 +22,7 @@ namespace LibraryAPI.Controllers
         {
             try
             {
-                return Ok(_booksRepository.GetAllBooks());
+                return Ok(_booksService.GetBooksBrowse());
             }
             catch (Exception e)
             {
@@ -31,60 +31,60 @@ namespace LibraryAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<BooksDto> GetBook(int id)
-        {
-            try
-            {
-                return Ok(_booksRepository.GetBook(id));
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Source);
-            }
-        }
+        //[HttpGet("{id}")]
+        //public ActionResult<BooksDto> GetBook(int id)
+        //{
+        //    try
+        //    {
+        //        return Ok(_booksService.GetBook(id));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return BadRequest(e.Source);
+        //    }
+        //}
 
 
-        [HttpPut("{id}")]
-        public ActionResult UpdateBook([FromBody] BooksDto model)
-        {
-            try
-            {
-               _booksRepository.UpdateBook(model);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Source);
-            }
-        }
+        //[HttpPut("{id}")]
+        //public ActionResult UpdateBook([FromBody] BooksDto model)
+        //{
+        //    try
+        //    {
+        //        _booksService.UpdateBook(model);
+        //        return Ok();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return BadRequest(e.Source);
+        //    }
+        //}
 
-        [HttpPost]
-        public ActionResult AddBook([FromBody] BooksDto model)
-        {
-            try
-            {
-                _booksRepository.AddBook(model);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Source);
-            }
-        }
+        //[HttpPost]
+        //public ActionResult AddBook([FromBody] BooksDto model)
+        //{
+        //    try
+        //    {
+        //        _booksService.AddBook(model);
+        //        return Ok();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return BadRequest(e.Source);
+        //    }
+        //}
 
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
-        {
-            try
-            {
-                _booksRepository.Delete(id);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Source);
-            }
-        }
+        //[HttpDelete("{id}")]
+        //public ActionResult Delete(int id)
+        //{
+        //    try
+        //    {
+        //        _booksService.Delete(id);
+        //        return Ok();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return BadRequest(e.Source);
+        //    }
+        //}
     }
 }
