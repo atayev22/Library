@@ -1,9 +1,12 @@
-﻿using LibraryAPI.DataAccess.Entities.Models;
+﻿using LibraryAPI.Core.Entities.FnModels;
+using LibraryAPI.DataAccess.Entities.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Reflection.Metadata.BlobBuilder;
@@ -40,6 +43,22 @@ namespace LibraryAPI.DataAccess
             #region BorrowedBooks
             modelBuilder.Entity<BorrowedBooks>().HasOne<Books>(a => a.Book);
             modelBuilder.Entity<BorrowedBooks>().HasOne<Readers>(a => a.Reader);
+            #endregion
+
+
+            #region HasNoKey(FN,SP)
+
+            var spTypes = Assembly
+                .GetExecutingAssembly()
+                .GetTypes()
+                .Where(t => t.Name.StartsWith("SP_") || t.Name.StartsWith("FN_"))
+                .ToHashSet();
+
+            foreach (var spType in spTypes)
+            {
+                modelBuilder.Entity(spType).HasNoKey();
+            }
+          
             #endregion
         }
 

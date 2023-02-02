@@ -10,4 +10,8 @@
     <ProjectReference Include="..\LibraryAPI.Core\LibraryAPI.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\SpModels\" />
+  </ItemGroup>
+
 </Project>

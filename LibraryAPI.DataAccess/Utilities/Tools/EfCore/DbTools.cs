@@ -14,18 +14,13 @@ namespace LibraryAPI.DataAccess.Infrastructure.Tools.EfCore
 {
     public static class DbTools
     {
-        public static List<T> ExecuteFuncion<T>(string procedureName, List<SqlParameter> parameters) where T : class
+        public static List<T> ExecuteFunction<T>(string procedureName, List<SqlParameter> parameters) where T : class
         {
             using var context = new AppDbContext();
 
             var parametersList = parameters != null ? string.Join(", ", parameters.Select(s=> s.Value)) : "";
 
-            //var data = context.Set<T>().FromSqlRaw($"SELECT * FROM {procedureName}({parametersList})").ToList();
-
-            var data2 = context.Database.SqlQueryRaw<T>($"SELECT * FROM {procedureName}({parametersList})").ToList();
-
-            //var data = context.Database.SqlQuery<T>(query); 
-            return data2;
+            return context.Set<T>().FromSqlRaw($"SELECT * FROM {procedureName}({parametersList})").ToList(); 
         }
 
         public static void AddParam(this IList<SqlParameter> list, string paramName, object paramValue)
