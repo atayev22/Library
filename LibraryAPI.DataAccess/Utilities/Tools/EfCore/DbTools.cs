@@ -20,10 +20,12 @@ namespace LibraryAPI.DataAccess.Infrastructure.Tools.EfCore
 
             var parametersList = parameters != null ? string.Join(", ", parameters.Select(s=> s.Value)) : "";
 
-            var data = context.Database.SqlQuery<T>($"SELECT * FROM {procedureName}({parametersList})").ToList();
+            //var data = context.Set<T>().FromSqlRaw($"SELECT * FROM {procedureName}({parametersList})").ToList();
+
+            var data2 = context.Database.SqlQueryRaw<T>($"SELECT * FROM {procedureName}({parametersList})").ToList();
 
             //var data = context.Database.SqlQuery<T>(query); 
-            return data;//context.Set<T>().FromSqlRaw(query, parametersList.ToArray()).ToList();
+            return data2;
         }
 
         public static void AddParam(this IList<SqlParameter> list, string paramName, object paramValue)

@@ -9,6 +9,6 @@ namespace LibraryAPI.Core.Entities.FnModels
     public class FN_GetBooksBrowse
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }

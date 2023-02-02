@@ -26,7 +26,7 @@ namespace LibraryAPI.Business.Services.Concrete
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.AddParam("pageCount", pageCount);
 
-            var data = DbTools.ExecuteFuncion<FN_GetBooksBrowse>("FN_GetBooksBrowse", parameters);
+            var data = DbTools.ExecuteFuncion<FN_GetBooksBrowse>("dbo.FN_GetBooksBrowse", parameters);
             return data;
         }
     }
