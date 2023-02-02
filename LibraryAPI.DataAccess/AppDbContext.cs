@@ -48,18 +48,25 @@ namespace LibraryAPI.DataAccess
 
             #region HasNoKey(FN,SP)
 
-            var spTypes = Assembly
-                .GetExecutingAssembly()
-                .GetTypes()
-                .Where(t => t.Name.StartsWith("SP_") || t.Name.StartsWith("FN_"))
-                .ToHashSet();
+            //var spTypes = Assembly
+            //    .GetExecutingAssembly()
+            //    .GetTypes()
+            //    .Where(t => t.Name.StartsWith("SP_") || t.Name.StartsWith("FN_"))
+            //    .ToHashSet();
 
-            foreach (var spType in spTypes)
-            {
-                modelBuilder.Entity(spType).HasNoKey();
-            }
-          
+            //foreach (var spType in spTypes)
+            //{
+            //    modelBuilder.Entity(spType).HasNoKey();
+            //}
+
             #endregion
+
+            var a = AppDomain.CurrentDomain.GetAssemblies()
+                       .SelectMany(t => t.GetTypes())
+                       .Where(t => t.IsClass && t.Namespace == "LibraryAPI.Core.Entities.FnModels" || t.Namespace == "LibraryAPI.Core.Entities.SpModels");
+
+
+
         }
 
         public DbSet<Authors> Authors { get; set; }
