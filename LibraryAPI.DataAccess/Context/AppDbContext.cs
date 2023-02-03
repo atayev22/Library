@@ -1,5 +1,6 @@
 ﻿using LibraryAPI.Core.Entities.FnModels;
 using LibraryAPI.DataAccess.Entities.Models;
+using LibraryAPI.DataAccess.Migrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
@@ -11,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Reflection.Metadata.BlobBuilder;
 
-namespace LibraryAPI.DataAccess
+namespace LibraryAPI.DataAccess.Context
 {
     public class AppDbContext : DbContext
     {
@@ -22,27 +23,27 @@ namespace LibraryAPI.DataAccess
 
         public AppDbContext(DbContextOptions options) : base(options)
         {
-            
+
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=UNISER-KAMRAN\\SQLEXPRESS;Database=DB_Library;Trusted_Connection=True;TrustServerCertificate=True;");
+                optionsBuilder.UseSqlServer($"Server=UNISER-KAMRAN\\SQLEXPRESS;Database=DB_Library;Trusted_Connection=True;TrustServerCertificate=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Books
-            modelBuilder.Entity<Books>().HasOne<Authors>(a => a.Author);
-            modelBuilder.Entity<Books>().HasOne<Categories>(a => a.Category);
-            modelBuilder.Entity<Books>().HasOne<PublishingHouses>(a => a.PublishingHouse);
+            modelBuilder.Entity<Books>().HasOne(a => a.Author);
+            modelBuilder.Entity<Books>().HasOne(a => a.Category);
+            modelBuilder.Entity<Books>().HasOne(a => a.PublishingHouse);
             #endregion
 
             #region BorrowedBooks
-            modelBuilder.Entity<BorrowedBooks>().HasOne<Books>(a => a.Book);
-            modelBuilder.Entity<BorrowedBooks>().HasOne<Readers>(a => a.Reader);
+            modelBuilder.Entity<BorrowedBooks>().HasOne(a => a.Book);
+            modelBuilder.Entity<BorrowedBooks>().HasOne(a => a.Reader);
             #endregion
 
 

@@ -1,6 +1,6 @@
 ﻿using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Business.Services.Concrete;
-using LibraryAPI.DataAccess;
+using LibraryAPI.DataAccess.Context;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Abstract;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete;
 using LibraryAPI.DataAccess.Repositories.Abstract;
@@ -29,10 +29,6 @@ namespace LibraryAPI.Business.Utilities.DependencyResolvers
 
             services.AddDbContext<AppDbContext>();
 
-
-  //          "ConnectionStrings": {
-  //              "DefaultConnection": "Server=UNISER-KAMRAN\\SQLEXPRESS;Database=DB_Library;Trusted_Connection=True;TrustServerCertificate=True;"
-  //},
         }
     }
 }
