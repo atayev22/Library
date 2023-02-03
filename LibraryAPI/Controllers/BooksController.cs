@@ -30,6 +30,19 @@ namespace LibraryAPI.Controllers
                 return BadRequest(e.Source);
             }
         }
+        [HttpGet]
+        public ActionResult<List<BooksDto>> GetAllBooksByFilter(string nameOrDescription)
+        {
+            try
+            {
+                return Ok(_booksService.GetBooksByFilter(nameOrDescription));
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Source);
+            }
+        }
 
         //[HttpGet("{id}")]
         //public ActionResult<BooksDto> GetBook(int id)

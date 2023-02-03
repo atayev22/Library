@@ -1,4 +1,6 @@
-﻿using LibraryAPI.Business.Services.Abstract;
+﻿using AutoMapper;
+using LibraryApi.BaseLog.Entities.Dtos;
+using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Core.Entities.FnModels;
 using LibraryAPI.DataAccess.Infrastructure.Tools.EfCore;
 using LibraryAPI.DataAccess.Repositories.Abstract;
@@ -14,19 +16,28 @@ namespace LibraryAPI.Business.Services.Concrete
     public class BookService : IBooksService
     {
         private readonly IBooksRepository _booksRepository;
+        private readonly IMapper _mapper;
 
-        public BookService(IBooksRepository booksRepository)
+        public BookService(IBooksRepository booksRepository,IMapper mapper)
         {
+            _mapper = mapper;
             _booksRepository = booksRepository;
         }
-
-        public IEnumerable<FN_GetBooksBrowse> GetBooksBrowse()
+    
+        public IEnumerable<BooksDto> GetBooksBrowse()
         {
-            string pageCount = "200";
-            List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.AddParam("pageCount", pageCount);
+            var data = _mapper.Map<IEnumerable<BooksDto>>(_booksRepository.GetAll());
 
-            var data = DbTools.ExecuteFunction<FN_GetBooksBrowse>("dbo.FN_GetBooksBrowse", parameters);
+            return data;
+        }
+
+        public IEnumerable<FN_GetBooksBrowse> GetBooksByFilter(string nameOrDescription)
+        {
+
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.AddParam("nameOrDescription", nameOrDescription);
+
+            var data = DbTools.ExecuteFunction<FN_GetBooksBrowse>("dbo.FN_GetBooksByFilter", parameters);
             return data;
         }
     }

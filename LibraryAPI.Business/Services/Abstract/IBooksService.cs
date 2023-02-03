@@ -1,4 +1,5 @@
-﻿using LibraryAPI.Core.Entities.FnModels;
+﻿using LibraryApi.BaseLog.Entities.Dtos;
+using LibraryAPI.Core.Entities.FnModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace LibraryAPI.Business.Services.Abstract
 {
     public interface IBooksService
     {
-        IEnumerable<FN_GetBooksBrowse> GetBooksBrowse();
+        IEnumerable<BooksDto> GetBooksBrowse();
+        IEnumerable<FN_GetBooksBrowse> GetBooksByFilter(string nameOrDescription);
     }
 }
