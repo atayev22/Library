@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Core.Entities.FnModels
 {
-    public class FN_GetBooksBrowse
+    public class FN_GetBooksByFilter
     {
         public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
+        public string BookName { get; set; } = string.Empty;
     }
 }

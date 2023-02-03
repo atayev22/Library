@@ -1,12 +1,13 @@
 ﻿using LibraryApi.BaseLog.Entities.Dtos;
 using LibraryAPI.Business.Services.Abstract;
+using LibraryAPI.Core.Entities.FnModels;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace LibraryAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class BooksController : ControllerBase
     {
@@ -30,13 +31,14 @@ namespace LibraryAPI.Controllers
                 return BadRequest(e.Source);
             }
         }
+
         [HttpGet]
-        public ActionResult<List<BooksDto>> GetAllBooksByFilter(string nameOrDescription)
+        public ActionResult<List<FN_GetBooksByFilter>> GetAllBooksByFilter(string nameOrDescription)
         {
             try
             {
                 return Ok(_booksService.GetBooksByFilter(nameOrDescription));
-            }
+            }   
             catch (Exception e)
             {
 

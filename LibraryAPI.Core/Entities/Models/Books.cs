@@ -13,6 +13,7 @@ namespace LibraryAPI.DataAccess.Entities.Models
         public int Qty { get; set; }
         public int PageCount { get; set; }
         public DateTime PubDate { get; set; }
+        public string Description { get; set; } = string.Empty;
 
 
         //Relations

@@ -20,7 +20,6 @@ namespace LibraryAPI.DataAccess.Context
         {
 
         }
-
         public AppDbContext(DbContextOptions options) : base(options)
         {
 

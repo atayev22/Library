@@ -31,13 +31,18 @@ namespace LibraryAPI.Business.Services.Concrete
             return data;
         }
 
-        public IEnumerable<FN_GetBooksBrowse> GetBooksByFilter(string nameOrDescription)
+        public IEnumerable<FN_GetBooksByFilter> GetBooksByFilter(string nameOrDescription)
         {
 
             List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.AddParam("nameOrDescription", nameOrDescription);
+            parameters.AddParam(nameof(nameOrDescription), nameOrDescription);
 
-            var data = DbTools.ExecuteFunction<FN_GetBooksBrowse>("dbo.FN_GetBooksByFilter", parameters);
+            var data = DbTools.ExecuteFunction<FN_GetBooksByFilter>("dbo.FN_GetBooksByNameFilter", parameters);
+            if(data is null)
+            {
+                data = DbTools.ExecuteFunction<FN_GetBooksByFilter>("dbo.FN_GetBooksByDescriptionFilter", parameters);
+                return data;
+            }    
             return data;
         }
     }
