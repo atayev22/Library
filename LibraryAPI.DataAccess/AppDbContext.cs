@@ -63,8 +63,12 @@ namespace LibraryAPI.DataAccess
 
             var a = AppDomain.CurrentDomain.GetAssemblies()
                        .SelectMany(t => t.GetTypes())
-                       .Where(t => t.IsClass && t.Namespace == "LibraryAPI.Core.Entities.FnModels" || t.Namespace == "LibraryAPI.Core.Entities.SpModels");
-
+                       .Where(t => t.IsClass && t.Name.StartsWith("SP_") || t.Name.StartsWith("FN_"))
+                       .ToHashSet();//t.Namespace == "LibraryAPI.Core.Entities.FnModels" || t.Namespace == "LibraryAPI.Core.Entities.SpModels"
+            foreach (var spType in a)
+            {
+                modelBuilder.Entity(spType).HasNoKey();
+            }
 
 
         }

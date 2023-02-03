@@ -23,9 +23,10 @@ namespace LibraryAPI.DataAccess.Infrastructure.Tools.EfCore
             return context.Set<T>().FromSqlRaw($"SELECT * FROM {procedureName}({parametersList})").ToList(); 
         }
 
-        public static void AddParam(this IList<SqlParameter> list, string paramName, object paramValue)
+        public static void AddParam(this List<SqlParameter> parameters, string paramName, object paramValue)
         {
-            list.Add(new SqlParameter(paramName, paramValue));
+            parameters.Add(new SqlParameter(paramName, paramValue));
         }
     }
 }
+
