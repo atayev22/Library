@@ -18,11 +18,12 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
         {
         }
 
-        public Books GetByIdWithAuthor(int id)
+        public Books GetByIdWithAllRelations(int id)
         {
             return dbSet
-                .Include(b=>b.Category)
-                .Include(b => b.Author)
+                .Include(c => c.Category)
+                .Include(a => a.Author)
+                .Include(p => p.PublishingHouse)
                 .FirstOrDefault(b => b.Id == id);
         }
     }
