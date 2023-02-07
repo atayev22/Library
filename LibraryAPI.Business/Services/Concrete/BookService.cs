@@ -8,6 +8,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -43,6 +44,20 @@ namespace LibraryAPI.Business.Services.Concrete
                 data = DbTools.ExecuteFunction<FN_GetBooksByFilter>("dbo.FN_GetBooksByDescriptionFilter", parameters);
                 return data;
             }    
+            return data;
+        }
+
+        public BooksDto GetBooksById(int id)
+        {
+            var book = _booksRepository.GetByIdWithAllRelations(id);
+
+            if (book == null)
+            {
+                return null;
+            }
+
+            var data = _mapper.Map<BooksDto>(book);
+
             return data;
         }
     }

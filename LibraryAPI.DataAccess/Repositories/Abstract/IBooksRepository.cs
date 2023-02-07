@@ -10,5 +10,6 @@ namespace LibraryAPI.DataAccess.Repositories.Abstract
 {
     public interface IBooksRepository : IEntityBaseRepository<Books>
     {
+        Books GetByIdWithAuthor(int id);
     }
 }

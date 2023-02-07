@@ -2,6 +2,7 @@
 using LibraryAPI.DataAccess.Context;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Abstract;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,6 @@ namespace LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete
         public TEntity Get(int id)
         {         
             var data = dbSet.Find(id);
-         
             return data;
         }
 

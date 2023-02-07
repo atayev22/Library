@@ -15,8 +15,8 @@ namespace LibraryAPI.DataAccess.Entities.Models
 
         //Relations
         public int BookId { get; set; }
-        public Books? Book { get; set; }
+        public Books Book { get; set; }
         public int ReaderId { get; set; }
-        public Readers? Reader { get; set; }
+        public Readers Reader { get; set; }
     }
 }

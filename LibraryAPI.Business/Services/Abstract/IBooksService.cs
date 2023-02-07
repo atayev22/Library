@@ -11,6 +11,7 @@ namespace LibraryAPI.Business.Services.Abstract
     public interface IBooksService
     {
         IEnumerable<BooksDto> GetBooksBrowse();
+        BooksDto GetBooksById(int id);
         IEnumerable<FN_GetBooksByFilter> GetBooksByFilter(string nameOrDescription);
     }
 }

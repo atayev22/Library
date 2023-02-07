@@ -9,7 +9,7 @@ namespace LibraryAPI.DataAccess.Entities.Models
     public class PublishingHouses
     {
         public int Id { get; set; }
-        public string Address { get; set; } = string.Empty;
-        public string Contct { get; set; } = string.Empty;
+        public string Address { get; set; }
+        public string Contct { get; set; }
     }
 }
