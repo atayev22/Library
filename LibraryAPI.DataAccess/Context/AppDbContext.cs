@@ -28,6 +28,7 @@ namespace LibraryAPI.DataAccess.Context
         {
             if (!optionsBuilder.IsConfigured)
             {
+                optionsBuilder.UseSqlServer();
                 optionsBuilder.UseSqlServer($"Server=UNISER-KAMRAN\\SQLEXPRESS;Database=DB_Library;Trusted_Connection=True;TrustServerCertificate=True;");
             }
         }
@@ -45,10 +46,7 @@ namespace LibraryAPI.DataAccess.Context
             modelBuilder.Entity<BorrowedBooks>().HasOne(a => a.Reader);
             #endregion
 
-
             #region HasNoKey(FN,SP)
-
-
             var classTypes = AppDomain.CurrentDomain.GetAssemblies()
                        .SelectMany(t => t.GetTypes())
                        .Where(t => t.IsClass && t.Name.StartsWith("SP_") || t.Name.StartsWith("FN_"))
@@ -57,7 +55,6 @@ namespace LibraryAPI.DataAccess.Context
             {
                 modelBuilder.Entity(type).HasNoKey();
             }
-
             #endregion
 
 

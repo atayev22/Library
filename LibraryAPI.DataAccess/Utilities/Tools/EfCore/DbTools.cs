@@ -18,16 +18,16 @@ namespace LibraryAPI.DataAccess.Infrastructure.Tools.EfCore
         public static List<T> ExecuteFunction<T>(string functionName, List<SqlParameter> parameters) where T : class
         {
             using var context = new AppDbContext();
-
-            var parametersList = new List<object>();
+         
             var parametersNameList = parameters != null ? string.Join(", ", parameters.Select(p => $"@{p.ParameterName}")) : "";
 
+            var parametersList = new List<object>();
             if (parameters != null)
             {
                 parametersList.AddRange(parameters);            
             }
 
-            return context.Set<T>().FromSqlRaw($"SELECT * FROM {functionName}({parametersNameList})", parametersList.ToArray()).ToList(); 
+            return context.Set<T>().FromSqlRaw($"SELECT * FROM {functionName}({parametersNameList})",parametersList.ToArray()).ToList(); 
         }
 
         public static void AddParam(this List<SqlParameter> parameters, string paramName, object paramValue)
