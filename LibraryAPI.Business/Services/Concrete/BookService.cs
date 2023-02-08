@@ -2,6 +2,7 @@
 using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Core.Entities.Dtos.Book;
 using LibraryAPI.Core.Entities.FnModels;
+using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Infrastructure.Tools.EfCore;
 using LibraryAPI.DataAccess.Repositories.Abstract;
 using Microsoft.Data.SqlClient;
@@ -25,9 +26,24 @@ namespace LibraryAPI.Business.Services.Concrete
             _booksRepository = booksRepository;
         }
 
-        public ResultInfo AddBook(BookDto book)
+        public ResultInfo AddOrUpdateBook(BookAddOrUpdateDto book)
         {
-            throw new NotImplementedException();
+            var data = _mapper.Map<Book>(book);
+            if (data.Id is 0)
+            {
+                _booksRepository.Add(data);
+            }        
+            else
+            {
+                _booksRepository.Update(data);
+            }
+
+            if(data is null)
+            {
+                return ResultInfo.NotImplemented;
+            }
+
+            return ResultInfo.Success;
         }
 
         public IEnumerable<BookBrowseDto> GetBooksBrowse()

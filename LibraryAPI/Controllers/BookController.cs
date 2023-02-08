@@ -62,6 +62,20 @@ namespace LibraryAPI.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult AddOrUpdateBook([FromBody] BookAddOrUpdateDto model)
+        {
+            try
+            {              
+                return Ok(_booksService.AddOrUpdateBook(model));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
+
+
         //[HttpPut("{id}")]
         //public ActionResult UpdateBook([FromBody] BooksDto model)
         //{
@@ -74,21 +88,9 @@ namespace LibraryAPI.Controllers
         //    {
         //        return BadRequest(e.Source);
         //    }
-        //}
+        //}             
 
-        //[HttpPost]
-        //public ActionResult AddBook([FromBody] BooksDto model)
-        //{
-        //    try
-        //    {
-        //        _booksService.AddBook(model);
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return BadRequest(e.Source);
-        //    }
-        //}
+
 
         //[HttpDelete("{id}")]
         //public ActionResult Delete(int id)

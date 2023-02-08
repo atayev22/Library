@@ -14,6 +14,6 @@ namespace LibraryAPI.Business.Services.Abstract
         IEnumerable<BookBrowseDto> GetBooksBrowse();
         BookDto GetBooksById(int id);
         IEnumerable<FN_GetBooksByFilter> GetBooksByFilter(string nameOrDescription);
-        ResultInfo AddBook(BookDto book);
+        ResultInfo AddOrUpdateBook(BookAddOrUpdateDto book);
     }
 }

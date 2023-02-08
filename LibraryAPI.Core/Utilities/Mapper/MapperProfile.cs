@@ -16,6 +16,7 @@ namespace LibraryApi.BaseLog.Utilities.Mapper
         {
             CreateMap<Book, BookDto>().ReverseMap();
             CreateMap<Book, BookBrowseDto>().ReverseMap();
+            CreateMap<Book, BookAddOrUpdateDto>().ReverseMap();
         }
     }
 }
