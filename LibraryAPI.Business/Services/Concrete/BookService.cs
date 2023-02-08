@@ -46,6 +46,16 @@ namespace LibraryAPI.Business.Services.Concrete
             return ResultInfo.Success;
         }
 
+        public ResultInfo DeleteBook(int id)
+        {
+            var response = _booksRepository.Delete(id);
+            if(response is false)
+            {
+                return ResultInfo.NotFound;
+            }
+            return ResultInfo.Deleted;
+        }
+
         public IEnumerable<BookBrowseDto> GetBooksBrowse()
         {
             var data = _mapper.Map<IEnumerable<BookBrowseDto>>(_booksRepository.GetBooksBrowse());

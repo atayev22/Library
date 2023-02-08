@@ -15,5 +15,6 @@ namespace LibraryAPI.Business.Services.Abstract
         BookDto GetBooksById(int id);
         IEnumerable<FN_GetBooksByFilter> GetBooksByFilter(string nameOrDescription);
         ResultInfo AddOrUpdateBook(BookAddOrUpdateDto book);
+        ResultInfo DeleteBook(int id);
     }
 }

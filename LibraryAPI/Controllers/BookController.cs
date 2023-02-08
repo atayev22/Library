@@ -75,35 +75,17 @@ namespace LibraryAPI.Controllers
             }
         }
 
-
-        //[HttpPut("{id}")]
-        //public ActionResult UpdateBook([FromBody] BooksDto model)
-        //{
-        //    try
-        //    {
-        //        _booksService.UpdateBook(model);
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return BadRequest(e.Source);
-        //    }
-        //}             
-
-
-
-        //[HttpDelete("{id}")]
-        //public ActionResult Delete(int id)
-        //{
-        //    try
-        //    {
-        //        _booksService.Delete(id);
-        //        return Ok();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return BadRequest(e.Source);
-        //    }
-        //}
+        [HttpDelete("{id}")]
+        public ActionResult DeleteBook(int id)
+        {
+            try
+            {          
+                return Ok(_booksService.DeleteBook(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
     }
 }
