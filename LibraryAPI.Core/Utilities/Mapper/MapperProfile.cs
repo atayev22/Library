@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LibraryApi.BaseLog.Entities.Dtos;
+using LibraryAPI.Core.Entities.Dtos.Book;
 using LibraryAPI.DataAccess.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,8 @@ namespace LibraryApi.BaseLog.Utilities.Mapper
     {
         public MapperProfile()
         {
-            CreateMap<Books, BooksDto>().ReverseMap();
+            CreateMap<Book, BookDto>().ReverseMap();
+            CreateMap<Book, BookBrowseDto>().ReverseMap();
         }
     }
 }

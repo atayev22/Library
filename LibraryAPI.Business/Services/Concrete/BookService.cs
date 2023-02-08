@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using LibraryApi.BaseLog.Entities.Dtos;
 using LibraryAPI.Business.Services.Abstract;
+using LibraryAPI.Core.Entities.Dtos.Book;
 using LibraryAPI.Core.Entities.FnModels;
 using LibraryAPI.DataAccess.Infrastructure.Tools.EfCore;
 using LibraryAPI.DataAccess.Repositories.Abstract;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Business.Services.Concrete
 {
-    public class BookService : IBooksService
+    public class BookService : IBookService
     {
         private readonly IBooksRepository _booksRepository;
         private readonly IMapper _mapper;
@@ -24,10 +24,15 @@ namespace LibraryAPI.Business.Services.Concrete
             _mapper = mapper;
             _booksRepository = booksRepository;
         }
-    
-        public IEnumerable<BooksDto> GetBooksBrowse()
+
+        public ResultInfo AddBook(BookDto book)
         {
-            var data = _mapper.Map<IEnumerable<BooksDto>>(_booksRepository.GetAll());
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<BookBrowseDto> GetBooksBrowse()
+        {
+            var data = _mapper.Map<IEnumerable<BookBrowseDto>>(_booksRepository.GetBooksBrowse());
 
             return data;
         }
@@ -47,7 +52,7 @@ namespace LibraryAPI.Business.Services.Concrete
             return data;
         }
 
-        public BooksDto GetBooksById(int id)
+        public BookDto GetBooksById(int id)
         {
             var book = _booksRepository.GetByIdWithAllRelations(id);
 
@@ -56,7 +61,7 @@ namespace LibraryAPI.Business.Services.Concrete
                 return null;
             }
 
-            var data = _mapper.Map<BooksDto>(book);
+            var data = _mapper.Map<BookDto>(book);
 
             return data;
         }

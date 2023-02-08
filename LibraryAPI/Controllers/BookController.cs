@@ -1,5 +1,6 @@
-﻿using LibraryApi.BaseLog.Entities.Dtos;
+﻿
 using LibraryAPI.Business.Services.Abstract;
+using LibraryAPI.Core.Entities.Dtos.Book;
 using LibraryAPI.Core.Entities.FnModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -10,17 +11,17 @@ namespace LibraryAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class BookController : ControllerBase
     {
-        private readonly IBooksService _booksService;
+        private readonly IBookService _booksService;
 
-        public BooksController(IBooksService booksRepository)
+        public BookController(IBookService booksRepository)
         {
             _booksService = booksRepository;
         }
 
         [HttpGet]
-        public ActionResult<List<BooksDto>> GetAllBooks()
+        public ActionResult<List<BookDto>> GetBooksBrowse()
         {
             try
             {
@@ -28,7 +29,6 @@ namespace LibraryAPI.Controllers
             }
             catch (Exception e)
             {
-
                 return BadRequest(e.Source);
             }
         }
@@ -49,7 +49,7 @@ namespace LibraryAPI.Controllers
 
 
         [HttpGet("{id}")]
-        public ActionResult<BooksDto> GetBook(int id)
+        public ActionResult<BookDto> GetBook(int id)
         {
             try
             {

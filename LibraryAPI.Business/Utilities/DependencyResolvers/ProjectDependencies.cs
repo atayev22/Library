@@ -19,10 +19,10 @@ namespace LibraryAPI.Business.Utilities.DependencyResolvers
         public static void AddProjectDependencies(this IServiceCollection services)
         {
             // Services
-            services.AddScoped<IBooksService, BookService>();
+            services.AddScoped<IBookService, BookService>();
 
             //Repositories
-            services.AddScoped<IBooksRepository, BooksRepository>();
+            services.AddScoped<IBooksRepository, BookRepository>();
             services.AddScoped(typeof(IEntityBaseRepository<>), typeof(EntityBaseRepository<>));
 
             //OnConfiguring

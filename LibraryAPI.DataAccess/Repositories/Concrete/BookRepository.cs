@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LibraryAPI.Core.Entities.Dtos.Book;
 using LibraryAPI.DataAccess.Context;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete;
@@ -12,13 +13,20 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Repositories.Concrete
 {
-    public class BooksRepository : EntityBaseRepository<Books>, IBooksRepository
+    public class BookRepository : EntityBaseRepository<Book>, IBooksRepository
     {
-        public BooksRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        public BookRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
 
-        public Books GetByIdWithAllRelations(int id)
+        public IEnumerable<Book> GetBooksBrowse()
+        {
+            return dbSet.Include(c => c.Category)
+                .Include(a => a.Author)
+                .Include(p => p.PublishingHouse);
+        }
+
+        public Book GetByIdWithAllRelations(int id)
         {
             return dbSet
                 .Include(c => c.Category)

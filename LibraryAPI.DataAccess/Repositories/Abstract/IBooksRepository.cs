@@ -1,4 +1,5 @@
-﻿using LibraryAPI.DataAccess.Entities.Models;
+﻿using LibraryAPI.Core.Entities.Dtos.Book;
+using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Repositories.Abstract
 {
-    public interface IBooksRepository : IEntityBaseRepository<Books>
+    public interface IBooksRepository : IEntityBaseRepository<Book>
     {
-        Books GetByIdWithAllRelations(int id);
+        Book GetByIdWithAllRelations(int id);
+        IEnumerable<Book> GetBooksBrowse();
     }
 }

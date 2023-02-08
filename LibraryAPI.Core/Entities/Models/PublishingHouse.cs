@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Entities.Models
 {
-    public class Categories
+    public class PublishingHouse
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Contct { get; set; }
     }
 }

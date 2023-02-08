@@ -36,14 +36,14 @@ namespace LibraryAPI.DataAccess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             #region Books
-            modelBuilder.Entity<Books>().HasOne(a => a.Author);
-            modelBuilder.Entity<Books>().HasOne(a => a.Category);
-            modelBuilder.Entity<Books>().HasOne(a => a.PublishingHouse);
+            modelBuilder.Entity<Book>().HasOne(a => a.Author);
+            modelBuilder.Entity<Book>().HasOne(a => a.Category);
+            modelBuilder.Entity<Book>().HasOne(a => a.PublishingHouse);
             #endregion
 
             #region BorrowedBooks
-            modelBuilder.Entity<BorrowedBooks>().HasOne(a => a.Book);
-            modelBuilder.Entity<BorrowedBooks>().HasOne(a => a.Reader);
+            modelBuilder.Entity<BorrowedBook>().HasOne(a => a.Book);
+            modelBuilder.Entity<BorrowedBook>().HasOne(a => a.Reader);
             #endregion
 
             #region HasNoKey(FN,SP)
@@ -61,11 +61,11 @@ namespace LibraryAPI.DataAccess.Context
 
         }
 
-        public DbSet<Authors> Authors { get; set; }
-        public DbSet<Books> Books { get; set; }
-        public DbSet<BorrowedBooks> BorrowedBooks { get; set; }
-        public DbSet<Categories> Categories { get; set; }
-        public DbSet<PublishingHouses> PublishingHouses { get; set; }
-        public DbSet<Readers> Readers { get; set; }
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Book> Books { get; set; }
+        public DbSet<BorrowedBook> BorrowedBooks { get; set; }
+        public DbSet<Categorie> Categories { get; set; }
+        public DbSet<PublishingHouse> PublishingHouses { get; set; }
+        public DbSet<Reader> Readers { get; set; }
     }
 }

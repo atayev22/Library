@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Entities.Models
 {
-    public class BorrowedBooks
+    public class BorrowedBook
     {
         public int Id { get; set; }
         public DateTime LendDate { get; set; }
@@ -15,8 +15,8 @@ namespace LibraryAPI.DataAccess.Entities.Models
 
         //Relations
         public int BookId { get; set; }
-        public Books Book { get; set; }
+        public Book Book { get; set; }
         public int ReaderId { get; set; }
-        public Readers Reader { get; set; }
+        public Reader Reader { get; set; }
     }
 }
