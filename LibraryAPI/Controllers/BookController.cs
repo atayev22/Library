@@ -21,7 +21,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<BookDto>> GetBooksBrowse()
+        public ActionResult GetBooksBrowse()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<FN_GetBooksByFilter>> GetAllBooksByFilter(string nameOrDescription)
+        public ActionResult GetAllBooksByFilter(string nameOrDescription)
         {
             try
             {
@@ -49,7 +49,22 @@ namespace LibraryAPI.Controllers
 
 
         [HttpGet("{id}")]
-        public ActionResult<BookDto> GetBook(int id)
+        public ActionResult GetBooksByCategoryFilter(int categoryId)
+        {
+            try
+            {
+                return Ok(_booksService.GetBooksByCategoryFilter(categoryId));
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Source);
+            }
+        }
+
+
+        [HttpGet("{id}")]
+        public ActionResult GetBook(int id)
         {
             try
             {

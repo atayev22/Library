@@ -1,6 +1,8 @@
 ﻿
+using Core.Utilities.Results;
 using LibraryAPI.Core.Entities.Dtos.Book;
 using LibraryAPI.Core.Entities.FnModels;
+using LibraryAPI.Core.Entities.SpModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +13,12 @@ namespace LibraryAPI.Business.Services.Abstract
 {
     public interface IBookService
     {
-        IEnumerable<BookBrowseDto> GetBooksBrowse();
-        BookDto GetBooksById(int id);
-        IEnumerable<FN_GetBooksByFilter> GetBooksByFilter(string nameOrDescription);
+        Result GetBooksBrowse();
+        Result GetBooksById(int id);
+        Result GetBooksByFilter(string nameOrDescription); 
         ResultInfo AddOrUpdateBook(BookAddOrUpdateDto book);
         ResultInfo DeleteBook(int id);
+        Result GetBooksByCategoryFilter(int categoryId);
+
     }
 }

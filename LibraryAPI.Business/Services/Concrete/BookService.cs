@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Core.Utilities.Results;
 using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Core.Entities.Dtos.Book;
 using LibraryAPI.Core.Entities.FnModels;
+using LibraryAPI.Core.Entities.SpModels;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Infrastructure.Tools.EfCore;
 using LibraryAPI.DataAccess.Repositories.Abstract;
@@ -56,16 +58,28 @@ namespace LibraryAPI.Business.Services.Concrete
             return ResultInfo.Deleted;
         }
 
-        public IEnumerable<BookBrowseDto> GetBooksBrowse()
+        public Result GetBooksBrowse()
         {
-            var data = _mapper.Map<IEnumerable<BookBrowseDto>>(_booksRepository.GetBooksBrowse());
+            var result = new Result();
 
-            return data;
+            var data = _mapper.Map<IEnumerable<BookBrowseDto>>(_booksRepository.GetBooksBrowse());
+            result.Data = data;
+
+            return result;
         }
 
-        public IEnumerable<FN_GetBooksByFilter> GetBooksByFilter(string nameOrDescription)
+        public Result GetBooksByCategoryFilter(int categoryId)
         {
+            //List<SqlParameter> parameters = new List<SqlParameter>();
+            //parameters.AddParam(nameof(categoryId), categoryId);
 
+            //var data = DbTools.ExecuteProcedure<>
+            throw new NotImplementedException();
+        }
+
+        public Result GetBooksByFilter(string nameOrDescription) //IEnumerable<FN_GetBooksByFilter>
+        {
+            var result = new Result();
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.AddParam(nameof(nameOrDescription), nameOrDescription);
 
@@ -73,23 +87,28 @@ namespace LibraryAPI.Business.Services.Concrete
             if(data is null)
             {
                 data = DbTools.ExecuteFunction<FN_GetBooksByFilter>("dbo.FN_GetBooksByDescriptionFilter", parameters);
-                return data;
-            }    
-            return data;
+                result.Data = data;
+                return result;
+            }
+            result.Data = data;
+            return result;
         }
 
-        public BookDto GetBooksById(int id)
+        public Result GetBooksById(int id)
         {
+            var result = new Result();  
+
             var book = _booksRepository.GetByIdWithAllRelations(id);
-
-            if (book == null)
-            {
-                return null;
-            }
-
             var data = _mapper.Map<BookDto>(book);
 
-            return data;
+            result.Data = data;
+
+            if (result.Data is null)
+            {
+                return result;
+            }         
+
+            return result;
         }
     }
 }
