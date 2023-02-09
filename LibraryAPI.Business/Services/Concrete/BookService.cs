@@ -70,11 +70,15 @@ namespace LibraryAPI.Business.Services.Concrete
 
         public Result GetBooksByCategoryFilter(int categoryId)
         {
-            //List<SqlParameter> parameters = new List<SqlParameter>();
-            //parameters.AddParam(nameof(categoryId), categoryId);
+            var result = new Result();
 
-            //var data = DbTools.ExecuteProcedure<>
-            throw new NotImplementedException();
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.AddParam(nameof(categoryId), categoryId);
+
+            var data = DbTools.ExecuteProcedure<SP_GetBooksByCategoryFilter>("SP_GetBooksByCategoryFilter", parameters);
+            result.Data = data;
+            
+            return result;
         }
 
         public Result GetBooksByFilter(string nameOrDescription) //IEnumerable<FN_GetBooksByFilter>
