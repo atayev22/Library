@@ -48,7 +48,7 @@ namespace LibraryAPI.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{categoryId}")]
         public ActionResult GetBooksByCategoryFilter(int categoryId)
         {
             try

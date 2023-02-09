@@ -34,7 +34,7 @@ namespace LibraryAPI.DataAccess.Infrastructure.Tools.EfCore
         {
             using var context = new AppDbContext();
 
-            var parametersNameList = parameters != null ? string.Join(", ", parameters.Select(p => $"@{p.ParameterName}")) : "";
+            var parametersNameList = parameters != null ? string.Join(", ", parameters.Select(p => $"@{p.ParameterName} = @{p.ParameterName}")) : "";   
 
             var parametersList = new List<object>();
             if (parameters != null)
@@ -42,7 +42,7 @@ namespace LibraryAPI.DataAccess.Infrastructure.Tools.EfCore
                 parametersList.AddRange(parameters);
             }
 
-            return context.Set<T>().FromSqlRaw($"EXEC {procedureName}", parametersList.ToArray()).ToList();
+            return context.Set<T>().FromSqlRaw($"EXEC {procedureName} {parametersNameList} ", parametersList.ToArray()).ToList();
         }
 
         public static void AddParam(this List<SqlParameter> parameters, string paramName, object paramValue)
