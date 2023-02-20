@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryAPI.Core.Entities.Dtos.Book
+namespace LibraryAPI.Core.Entities.Dtos.BookDtos
 {
     public class BookAddOrUpdateDto
     {

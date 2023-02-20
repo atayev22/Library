@@ -1,4 +1,4 @@
-﻿using LibraryAPI.Core.Entities.Dtos.Book;
+﻿using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Abstract;
 using System;

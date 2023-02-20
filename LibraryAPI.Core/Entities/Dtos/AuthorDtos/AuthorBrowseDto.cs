@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryAPI.Core.Entities.Dtos.Author
+namespace LibraryAPI.Core.Entities.Dtos.AuthorDtos
 {
-    internal class AuthorBrowseDto
+    public class AuthorBrowseDto
     {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }

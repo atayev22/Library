@@ -1,6 +1,6 @@
 ﻿
 using Core.Utilities.Results;
-using LibraryAPI.Core.Entities.Dtos.Book;
+using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.Core.Entities.FnModels;
 using LibraryAPI.Core.Entities.SpModels;
 using System;
