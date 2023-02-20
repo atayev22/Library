@@ -1,4 +1,5 @@
 ﻿using Core.Utilities.Results;
+using LibraryAPI.DataAccess.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace LibraryAPI.Business.Services.Abstract
         Result GetAuthorsBrose();
         Result GetAuthorById(int id);
         Result GetAuthorByName(string name);
-        ResultInfo AddOrUpdateAuthor(int id);
+        ResultInfo AddOrUpdateAuthor(Author author);
         ResultInfo DeleteAuthor(int id);
 
     }
