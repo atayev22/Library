@@ -12,6 +12,6 @@ namespace LibraryAPI.DataAccess.Repositories.Abstract
     public interface IBooksRepository : IEntityBaseRepository<Book>
     {
         Book GetByIdWithAllRelations(int id);
-        IEnumerable<Book> GetBooksBrowse();
+        IQueryable<Book> GetBooksBrowse();     
     }
 }

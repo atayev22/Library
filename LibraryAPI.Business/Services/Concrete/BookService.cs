@@ -62,7 +62,7 @@ namespace LibraryAPI.Business.Services.Concrete
         {
             var result = new Result();
 
-            var data = _mapper.Map<IEnumerable<BookBrowseDto>>(_booksRepository.GetBooksBrowse());
+            var data = _mapper.Map<IEnumerable<BookBrowseDto>>(_booksRepository.GetBooksBrowse().ToList());
             result.Data = data;
 
             return result;

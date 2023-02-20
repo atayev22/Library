@@ -19,11 +19,11 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
         {
         }
 
-        public IEnumerable<Book> GetBooksBrowse()
+        public IQueryable<Book> GetBooksBrowse()
         {
             return dbSet.Include(c => c.Category)
                 .Include(a => a.Author)
-                .Include(p => p.PublishingHouse);
+                .Include(p => p.PublishingHouse).OrderBy(p => p.Name);
         }
 
         public Book GetByIdWithAllRelations(int id)
