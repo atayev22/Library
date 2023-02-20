@@ -1,5 +1,7 @@
 ﻿using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Business.Services.Concrete;
+using LibraryAPI.Core.Entities.Dtos.BookDtos;
+using LibraryAPI.DataAccess.Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +39,32 @@ namespace LibraryAPI.Controllers
             try
             {
                 return Ok(_authorService.GetAuthorById(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddOrUpdateAuthor([FromBody] Author model)
+        {
+            try
+            {
+                return Ok(_authorService.AddOrUpdateAuthor(model));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteAuthor(int id)
+        {
+            try
+            {
+                return Ok(_authorService.DeleteAuthor(id));
             }
             catch (Exception e)
             {
