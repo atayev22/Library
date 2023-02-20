@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Business.Services.Abstract
 {
-    public interface IAutorService
+    public interface IAuthorService
     {
         Result GetAuthorsBrose();
         Result GetAuthorById(int id);

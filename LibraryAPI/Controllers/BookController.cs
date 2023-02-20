@@ -1,6 +1,6 @@
 ﻿
 using LibraryAPI.Business.Services.Abstract;
-using LibraryAPI.Core.Entities.Dtos.Book;
+using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.Core.Entities.FnModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;

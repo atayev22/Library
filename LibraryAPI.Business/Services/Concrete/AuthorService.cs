@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Business.Services.Concrete
 {
-    public class AuthorService : IAutorService
+    public class AuthorService : IAuthorService
     {
         private readonly IAuthorRepository _authorRepository;
         private readonly IMapper _mapper;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Core.Utilities.Results;
 using LibraryAPI.Business.Services.Abstract;
-using LibraryAPI.Core.Entities.Dtos.Book;
+using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.Core.Entities.FnModels;
 using LibraryAPI.Core.Entities.SpModels;
 using LibraryAPI.DataAccess.Entities.Models;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using LibraryAPI.Core.Entities.Dtos.Book;
+using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.DataAccess.Context;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete;
