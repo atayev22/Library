@@ -14,7 +14,7 @@ namespace LibraryAPI.Business.Services.Abstract
     public interface IBookService
     {
         Result GetBooksBrowse();
-        Result GetBooksById(int id);
+        Result GetBookById(int id);
         Result GetBooksByFilter(string nameOrDescription); 
         ResultInfo AddOrUpdateBook(BookAddOrUpdateDto book);
         ResultInfo DeleteBook(int id);

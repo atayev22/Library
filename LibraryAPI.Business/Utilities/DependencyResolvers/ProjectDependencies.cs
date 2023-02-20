@@ -22,7 +22,7 @@ namespace LibraryAPI.Business.Utilities.DependencyResolvers
             services.AddScoped<IBookService, BookService>();
 
             //Repositories
-            services.AddScoped<IBooksRepository, BookRepository>();
+            services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped(typeof(IEntityBaseRepository<>), typeof(EntityBaseRepository<>));
 
             //OnConfiguring

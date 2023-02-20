@@ -68,7 +68,7 @@ namespace LibraryAPI.Controllers
         {
             try
             {
-                return Ok(_booksService.GetBooksById(id));
+                return Ok(_booksService.GetBookById(id));
             }
             catch (Exception e)
             {

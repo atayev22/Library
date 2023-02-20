@@ -19,10 +19,10 @@ namespace LibraryAPI.Business.Services.Concrete
 {
     public class BookService : IBookService
     {
-        private readonly IBooksRepository _booksRepository;
+        private readonly IBookRepository _booksRepository;
         private readonly IMapper _mapper;
 
-        public BookService(IBooksRepository booksRepository,IMapper mapper)
+        public BookService(IBookRepository booksRepository,IMapper mapper)
         {
             _mapper = mapper;
             _booksRepository = booksRepository;
@@ -98,7 +98,7 @@ namespace LibraryAPI.Business.Services.Concrete
             return result;
         }
 
-        public Result GetBooksById(int id)
+        public Result GetBookById(int id)
         {
             var result = new Result();  
 

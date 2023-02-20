@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Repositories.Abstract
 {
-    public interface IBooksRepository : IEntityBaseRepository<Book>
+    public interface IBookRepository : IEntityBaseRepository<Book>
     {
         Book GetByIdWithAllRelations(int id);
         IQueryable<Book> GetBooksBrowse();     
