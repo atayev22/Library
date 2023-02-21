@@ -8,6 +8,7 @@
     //-------------------------------
 
     //--- Fail --- (starts with 2)
+    CouldNotSend = 1999,
     SaveFailure = 2000,
     BlockedOperation = 2001,
     NotFound = 2002,
