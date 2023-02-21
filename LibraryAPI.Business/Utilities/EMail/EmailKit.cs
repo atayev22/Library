@@ -12,7 +12,7 @@ namespace LibraryAPI.DataAccess.Utilities.EMail
 {
     public class EmailKit
     {
-        public ResultInfo SendMail(string to,int readerId)
+        public ResultInfo SendMailToReader(string to,int readerId)
         {
             string htmlBody = "";                               
             MimeMessage mail = new MimeMessage();
@@ -55,9 +55,9 @@ namespace LibraryAPI.DataAccess.Utilities.EMail
             foreach (var book in data)
             {
                 htmlBody += $@"<tr>
-                <th width = ""15%"" style=""background-color: darkorange; color: black;border:1px solid darkorange;"">{book.BookName}</th>
-                <th width = ""15%"" style= ""background-color: darkorange; color: black;border:1px solid darkorange;"" >{book.LendDate.ToString("dd-MM-yyyy")}</th>           
-                  <th width= ""15%"" style= ""background-color: darkorange; color: black;border:1px solid darkorange;"" >{book.ReturnDate.ToString("dd-MM-yyyy")}</th>      
+                <th width = ""15%"" style="" color: black;border:1px solid darkorange;"">{book.BookName}</th>
+                <th width = ""15%"" style= "" color: black;border:1px solid darkorange;"" >{book.LendDate.ToString("dd-MM-yyyy")}</th>           
+                  <th width= ""15%"" style= "" color: black;border:1px solid darkorange;"" >{book.ReturnDate.ToString("dd-MM-yyyy")}</th>      
                 </tr>";
             }
             htmlBody += $@"</tbody>		
@@ -69,8 +69,7 @@ namespace LibraryAPI.DataAccess.Utilities.EMail
 
             using var smtp = new SmtpClient();
             smtp.Connect("smtp.mail.ru", 465, true);
-            smtp.Authenticate("atayev222@bk.ru", "bgECC83FKK5YnYgij3ec");
-            smtp.Send(mail);
+            smtp.Authenticate("atayev222@bk.ru", "r6njtjQyhEFVFPEh0jGJ");
             if (smtp.Send(mail) is null)
             {
                 return ResultInfo.CouldNotSendMail;

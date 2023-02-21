@@ -2,6 +2,7 @@
 using LibraryAPI.Business.Services.Concrete;
 using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.DataAccess.Entities.Models;
+using LibraryAPI.DataAccess.Utilities.EMail;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
