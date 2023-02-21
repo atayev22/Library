@@ -57,7 +57,7 @@ namespace LibraryAPI.DataAccess.Utilities.EMail
                 htmlBody += $@"<tr>
                 <th width = ""15%"" style="" color: black;border:1px solid darkorange;"">{book.BookName}</th>
                 <th width = ""15%"" style= "" color: black;border:1px solid darkorange;"" >{book.LendDate.ToString("dd-MM-yyyy")}</th>           
-                  <th width= ""15%"" style= "" color: black;border:1px solid darkorange;"" >{book.ReturnDate.ToString("dd-MM-yyyy")}</th>      
+                <th width= ""15%"" style= "" color: black;border:1px solid darkorange;"" >{book.ReturnDate.ToString("dd-MM-yyyy")}</th>      
                 </tr>";
             }
             htmlBody += $@"</tbody>		
