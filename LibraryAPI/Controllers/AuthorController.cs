@@ -34,6 +34,19 @@ namespace LibraryAPI.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult GetAuthorByNameFilter(string name)
+        {
+            try
+            {
+                return Ok(_authorService.GetAuthorByName(name));
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Source);
+            }
+        }
         [HttpGet("{id}")]
         public ActionResult GetAuthor(int id)
         {

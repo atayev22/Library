@@ -3,10 +3,14 @@ using Core.Utilities.Results;
 using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Core.Entities.Dtos.AuthorDtos;
 using LibraryAPI.Core.Entities.Dtos.BookDtos;
+using LibraryAPI.Core.Entities.FnModels;
+using LibraryAPI.Core.Entities.SpModels;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete;
+using LibraryAPI.DataAccess.Infrastructure.Tools.EfCore;
 using LibraryAPI.DataAccess.Repositories.Abstract;
 using LibraryAPI.DataAccess.Repositories.Concrete;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +54,14 @@ namespace LibraryAPI.Business.Services.Concrete
 
         public Result GetAuthorByName(string name)
         {
-            throw new NotImplementedException();
+            var result = new Result();
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            parameters.AddParam(nameof(name), name);
+
+            var data = DbTools.ExecuteProcedure<SP_GetAuthorByName>("dbo.SP_GetAuthorByName", parameters);
+            result.Data = data;
+
+            return result;
         }
 
         public ResultInfo AddOrUpdateAuthor(Author author)
