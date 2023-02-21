@@ -10,7 +10,7 @@ using MimeKit.Text;
 
 namespace LibraryAPI.DataAccess.Utilities.EMail
 {
-    public class MailKit
+    public class EmailKit
     {
         public ResultInfo SendMail(string to,int readerId)
         {
