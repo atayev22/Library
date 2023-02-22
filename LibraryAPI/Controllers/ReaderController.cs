@@ -49,7 +49,7 @@ namespace LibraryAPI.Controllers
         {
             try
             {
-                return Ok(_readerService.GetReaderByName(contact));
+                return Ok(_readerService.GetReaderByContact(contact));
             }
             catch (Exception e)
             {

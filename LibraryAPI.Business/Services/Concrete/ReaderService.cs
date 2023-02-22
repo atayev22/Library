@@ -53,9 +53,18 @@ namespace LibraryAPI.Business.Services.Concrete
             return ResultInfo.Deleted;
         }
 
-        public Result GetReaderByContact(string name)
+        public Result GetReaderByContact(string number)
         {
-            throw new NotImplementedException();
+            var result = new Result();
+
+            var response = _readerRepository.GetReaderByContact(number);
+            if (response is null)
+            {
+                return result;
+            }
+            result.Data = response;
+
+            return result;
         }
 
         public Result GetReaderById(int id)

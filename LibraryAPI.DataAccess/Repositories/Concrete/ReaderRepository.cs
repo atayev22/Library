@@ -17,6 +17,13 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
         {
         }
 
+        public IQueryable<Reader> GetReaderByContact(string number)
+        {
+            var data = dbSet.
+                Where(r => r.Contact.Contains(number));
+            return data;
+        }
+
         public IQueryable<Reader> GetReaderByName(string name)
         {
             var data = dbSet.

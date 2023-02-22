@@ -11,5 +11,6 @@ namespace LibraryAPI.DataAccess.Repositories.Abstract
     public interface IReaderRepository: IEntityBaseRepository<Reader>
     {
         IQueryable<Reader> GetReaderByName(string name);
+        IQueryable<Reader> GetReaderByContact(string number);
     }
 }

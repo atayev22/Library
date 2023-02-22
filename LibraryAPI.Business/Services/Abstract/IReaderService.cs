@@ -14,7 +14,7 @@ namespace LibraryAPI.Business.Services.Abstract
         ResultInfo AddOrUpdateReader(Reader reader);
         Result GetReaderById(int id);
         Result GetReaderByName(string name);
-        Result GetReaderByContact(string name);
+        Result GetReaderByContact(string number);
         ResultInfo DeleteReader(int id);
 
     }
