@@ -62,8 +62,8 @@ namespace LibraryAPI.Business.Services.Concrete
         {
             var result = new Result();
 
-            var data = _mapper.Map<IEnumerable<BookBrowseDto>>(_booksRepository.GetBooksBrowse().ToList());
-            result.Data = data;
+            var response = _mapper.Map<IEnumerable<BookBrowseDto>>(_booksRepository.GetBooksBrowse().ToList());
+            result.Data = response;
 
             return result;
         }
@@ -75,8 +75,8 @@ namespace LibraryAPI.Business.Services.Concrete
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.AddParam(nameof(categoryId), categoryId);
 
-            var data = DbTools.ExecuteProcedure<SP_GetBooksByCategoryFilter>("SP_GetBooksByCategoryFilter", parameters);
-            result.Data = data;
+            var response = DbTools.ExecuteProcedure<SP_GetBooksByCategoryFilter>("SP_GetBooksByCategoryFilter", parameters);
+            result.Data = response;
             
             return result;
         }
@@ -87,14 +87,14 @@ namespace LibraryAPI.Business.Services.Concrete
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.AddParam(nameof(nameOrDescription), nameOrDescription);
 
-            var data = DbTools.ExecuteFunction<FN_GetBooksByFilter>("dbo.FN_GetBooksByNameFilter", parameters);
-            if(data is null)
+            var response = DbTools.ExecuteFunction<FN_GetBooksByFilter>("dbo.FN_GetBooksByNameFilter", parameters);
+            if(response is null)
             {
-                data = DbTools.ExecuteFunction<FN_GetBooksByFilter>("dbo.FN_GetBooksByDescriptionFilter", parameters);
-                result.Data = data;
+                response = DbTools.ExecuteFunction<FN_GetBooksByFilter>("dbo.FN_GetBooksByDescriptionFilter", parameters);
+                result.Data = response;
                 return result;
             }
-            result.Data = data;
+            result.Data = response;
             return result;
         }
 

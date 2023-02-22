@@ -33,8 +33,8 @@ namespace LibraryAPI.Business.Services.Concrete
         {
             var result = new Result();
 
-            var data = _mapper.Map<IEnumerable<AuthorBrowseDto>>(_authorRepository.GetAll().ToList());
-            result.Data = data;
+            var response = _mapper.Map<IEnumerable<AuthorBrowseDto>>(_authorRepository.GetAll().ToList());
+            result.Data = response;
 
             return result;
         }
@@ -58,8 +58,8 @@ namespace LibraryAPI.Business.Services.Concrete
             List<SqlParameter> parameters = new List<SqlParameter>();
             parameters.AddParam(nameof(name), name);
 
-            var data = DbTools.ExecuteProcedure<SP_GetAuthorByName>("dbo.SP_GetAuthorByName", parameters);
-            result.Data = data;
+            var response = DbTools.ExecuteProcedure<SP_GetAuthorByName>("dbo.SP_GetAuthorByName", parameters);
+            result.Data = response;
 
             return result;
         }
