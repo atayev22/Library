@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Business.Services.Abstract
 {
-    internal interface IReaderService
+    public interface IReaderService
     {
     }
 }

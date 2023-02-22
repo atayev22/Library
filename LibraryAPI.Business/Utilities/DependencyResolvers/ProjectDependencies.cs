@@ -21,14 +21,15 @@ namespace LibraryAPI.Business.Utilities.DependencyResolvers
             // Services
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IReaderService, ReaderService>();
 
             //Repositories
+            services.AddScoped<IReaderRepository, ReaderRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped(typeof(IEntityBaseRepository<>), typeof(EntityBaseRepository<>));
 
             //OnConfiguring
-
             services.AddDbContext<AppDbContext>();
 
         }
