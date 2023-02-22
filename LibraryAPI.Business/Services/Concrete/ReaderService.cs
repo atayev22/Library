@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Core.Utilities.Results;
 using LibraryAPI.Business.Services.Abstract;
+using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Repositories.Abstract;
+using LibraryAPI.DataAccess.Repositories.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,24 @@ namespace LibraryAPI.Business.Services.Concrete
         }
 
 
-        public ResultInfo AddOrUpdateReader(int id)
+        public ResultInfo AddOrUpdateReader(Reader reader)
         {
-            throw new NotImplementedException();
+            var result = new Result();
+            if (reader.Id is 0)
+            {
+                _readerRepository.Add(reader);
+            }
+            else
+            {
+                _readerRepository.Update(reader);
+            }
+
+            if (reader is null)
+            {
+                return ResultInfo.NotImplemented;
+            }
+
+            return ResultInfo.Success;
         }
 
         public ResultInfo DeleteReader(int id)
@@ -41,9 +58,32 @@ namespace LibraryAPI.Business.Services.Concrete
             throw new NotImplementedException();
         }
 
+        public Result GetReaderById(int id)
+        {
+            var result = new Result();
+
+            var reader = _readerRepository.Get(id);
+            result.Data = reader;
+            if (result.Data == null)
+            {
+                return result;
+            }
+            return result;
+        }
+
         public Result GetReaderByName(string name)
         {
-            throw new NotImplementedException();
+            var result = new Result();
+
+            var response = _readerRepository.GetReaderByName(name);
+            if(response is null)
+            {
+                return result;
+            }
+            result.Data = response;
+
+            return result;
+
         }
 
         public Result GetReadersBrowse()

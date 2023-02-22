@@ -16,5 +16,13 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
         public ReaderRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
+
+        public IQueryable<Reader> GetReaderByName(string name)
+        {
+            var data = dbSet.
+                Where(r=> string.Concat(r.FirstName, r.LastName).
+                Contains(name));
+            return data;
+        }
     }
 }
