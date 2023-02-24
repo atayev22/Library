@@ -1,13 +1,15 @@
 ﻿using LibraryAPI.DataAccess.Entities.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace LibraryAPI.Core.Entities.SpModels
 {
-    public class SP_GetBooksByCategoryFilter
+    [NotMapped]
+   public class SP_GetBooksByCategoryFilter
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -4,6 +4,7 @@ using LibraryAPI.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryAPI.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230224112445_mig")]
+    partial class mig
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,17 @@ namespace LibraryAPI.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("LibraryAPI.Core.Entities.FnModels.FN_GetBooksByFilter", b =>
+                {
+                    b.Property<string>("BookName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.ToTable("FN_GetBooksByFilter");
+                });
 
             modelBuilder.Entity("LibraryAPI.Core.Entities.Models.User", b =>
                 {
@@ -69,6 +83,60 @@ namespace LibraryAPI.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("LibraryAPI.Core.Entities.SpModels.SP_BorrowedBookForEMail", b =>
+                {
+                    b.Property<string>("BookName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LendDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("ReturnDate")
+                        .HasColumnType("datetime2");
+
+                    b.ToTable("SP_BorrowedBookForEMail");
+                });
+
+            modelBuilder.Entity("LibraryAPI.Core.Entities.SpModels.SP_GetAuthorByName", b =>
+                {
+                    b.Property<string>("FullName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.ToTable("SP_GetAuthorByName");
+                });
+
+            modelBuilder.Entity("LibraryAPI.Core.Entities.SpModels.SP_GetBooksByCategoryFilter", b =>
+                {
+                    b.Property<string>("AuthorName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PageCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("PubDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PublishingHouseAdress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
+
+                    b.ToTable("SP_GetBooksByCategoryFilter");
                 });
 
             modelBuilder.Entity("LibraryAPI.DataAccess.Entities.Models.Author", b =>

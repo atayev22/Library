@@ -10,9 +10,4 @@
     <ProjectReference Include="..\LibraryAPI.Core\LibraryAPI.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repositories\SystemRepositories\Abstract\" />
-    <Folder Include="Repositories\SystemRepositories\Concrete\" />
-  </ItemGroup>
-
 </Project>

@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryAPI.DataAccess.Entities.Models
+namespace LibraryAPI.Core.Entities.Models
 {
-    public class PublishingHouse
+    public class UserRole
     {
         public int Id { get; set; }
-        public string Address { get; set; }
-        public string Contact { get; set; }
+        public string RoleName { get; set; }
     }
 }

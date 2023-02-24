@@ -1,4 +1,6 @@
 ﻿using LibraryAPI.Core.Entities.FnModels;
+using LibraryAPI.Core.Entities.Models;
+using LibraryAPI.Core.Entities.SpModels;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Migrations;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +24,7 @@ namespace LibraryAPI.DataAccess.Context
         }
         public AppDbContext(DbContextOptions options) : base(options)
         {
-
+            //Database.EnsureCreated();
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -46,15 +48,19 @@ namespace LibraryAPI.DataAccess.Context
             modelBuilder.Entity<BorrowedBook>().HasOne(a => a.Reader);
             #endregion
 
+            #region User
+            modelBuilder.Entity<User>().HasOne(a => a.UserRole);
+            #endregion
+
             #region HasNoKey(FN,SP)
-            var classTypes = AppDomain.CurrentDomain.GetAssemblies()
-                       .SelectMany(t => t.GetTypes())
-                       .Where(t => t.IsClass && t.Name.StartsWith("SP_") || t.Name.StartsWith("FN_"))
-                       .ToHashSet();
-            foreach (var type in classTypes)
-            {
-                modelBuilder.Entity(type).HasNoKey();
-            }
+            //var classTypes = AppDomain.CurrentDomain.GetAssemblies()
+            //           .SelectMany(t => t.GetTypes())
+            //           .Where(t => t.IsClass && t.Name.StartsWith("SP_") || t.Name.StartsWith("FN_"))
+            //           .ToHashSet();
+            //foreach (var type in classTypes)
+            //{
+            //    modelBuilder.Entity(type).HasNoKey();
+            //}
             #endregion
 
 
@@ -67,5 +73,7 @@ namespace LibraryAPI.DataAccess.Context
         public DbSet<Categorie> Categories { get; set; }
         public DbSet<PublishingHouse> PublishingHouses { get; set; }
         public DbSet<Reader> Readers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
     }
 }
