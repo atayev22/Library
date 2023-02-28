@@ -81,6 +81,7 @@ namespace LibraryAPI.Business.Services.Concrete
                     }
                     user.Password = hash;
                     var data = _mapper.Map<User>(user);
+                    data.RegisterDate = DateTime.Now;
 
                     _userRepository.Add(data);
                 }
