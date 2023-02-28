@@ -16,6 +16,11 @@ namespace LibraryAPI.Business.Services.Concrete
             throw new NotImplementedException();
         }
 
+        public ResultInfo LogIn(UserRegisterDto user)
+        {
+            throw new NotImplementedException();
+        }
+
         public ResultInfo RegisterUser(UserRegisterDto user)
         {
             throw new NotImplementedException();
