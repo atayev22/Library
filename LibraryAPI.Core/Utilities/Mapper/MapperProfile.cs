@@ -29,6 +29,8 @@ namespace LibraryApi.BaseLog.Utilities.Mapper
 
             #region User
             CreateMap<User, UserRegisterDto>().ReverseMap();
+            CreateMap<User, UserLogInDto>().ReverseMap();
+            CreateMap<User, UserDto>().ReverseMap();
             #endregion
         }
     }

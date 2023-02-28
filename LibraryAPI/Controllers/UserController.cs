@@ -29,11 +29,11 @@ namespace LibraryAPI.Controllers
             }
         }
         [HttpPost]
-        public IActionResult LogInUser(UserRegisterDto user)
+        public IActionResult LogInUser(UserLogInDto user)
         {
             try
             {
-                return Ok(_userService.RegisterUser(user));
+                return Ok(_userService.LogIn(user));
             }
             catch (Exception e)
             {

@@ -33,12 +33,12 @@ namespace LibraryAPI.Business.Services.Concrete
             _configuration = configuration;
         }
 
-        public string CreateToken(User user)
+        public string CreateToken(UserDto user)
         {
             List<Claim> claims = new List<Claim>
             {
-                //new Claim(ClaimTypes.Name, user.UserName),
-                //new Claim(ClaimTypes.Role,user.Role)
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Role,user.UseRole)
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSetings:Token").Value));
@@ -54,13 +54,14 @@ namespace LibraryAPI.Business.Services.Concrete
             return jwt;
         }
 
-        public string LogIn(UserRegisterDto user)
+        public string LogIn(UserLogInDto user)
         {
             string? token = null;
             var response = _userRepository.GetUserByUserName(user.UserName);
+            var data = _mapper.Map<UserDto>(response);
             if (VerifyPassHash(user.Password, response.Password) is true)
-            {
-                token = CreateToken(response);
+            {     
+                token = CreateToken(data);
             }
             return token;
         }

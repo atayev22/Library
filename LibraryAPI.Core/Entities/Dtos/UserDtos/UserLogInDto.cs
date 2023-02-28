@@ -9,6 +9,6 @@ namespace LibraryAPI.Core.Entities.Dtos.UserDtos
     public class UserLogInDto
     {
         public string UserName { get; set; }
-        public string Passowrd { get; set; }
+        public string Password { get; set; }
     }
 }
