@@ -48,6 +48,9 @@ namespace LibraryAPI.DataAccess.Context
             modelBuilder.Entity<BorrowedBook>().HasOne(a => a.Reader);
             #endregion
 
+            #region Users
+            modelBuilder.Entity<User>().HasOne(a => a.UserRole);
+            #endregion
 
             #region HasNoKey(FN,SP)
             //var classTypes = AppDomain.CurrentDomain.GetAssemblies()
@@ -69,5 +72,6 @@ namespace LibraryAPI.DataAccess.Context
         public DbSet<PublishingHouse> PublishingHouses { get; set; }
         public DbSet<Reader> Readers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
     }
 }

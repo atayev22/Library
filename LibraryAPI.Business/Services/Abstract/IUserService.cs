@@ -11,8 +11,8 @@ namespace LibraryAPI.Business.Services.Abstract
     public interface IUserService
     {
         ResultInfo RegisterUser(UserRegisterDto user);
-        string LogIn(UserRegisterDto user);
-        string CreateToken(User user);
+        string LogIn(UserLogInDto user);
+        string CreateToken(UserDto user);
         void CreatePassHash(string password, out byte[] passwordHash);
         bool VerifyPassHash(string pass, string passHash);
     }

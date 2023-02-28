@@ -4,6 +4,7 @@ using LibraryAPI.DataAccess.Context;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Abstract;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete;
 using LibraryAPI.DataAccess.Repositories.Abstract;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
 
         public User GetUserByUserName(string userName)
         {
-            var data = dbSet.Where(un => un.UserName == userName).FirstOrDefault();
+            var data = dbSet.Where(un => un.UserName == userName).Include(r => r.UserRole).FirstOrDefault();
             if (data is null)
             {
                 return null;

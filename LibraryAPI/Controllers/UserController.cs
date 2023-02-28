@@ -28,5 +28,17 @@ namespace LibraryAPI.Controllers
                 return BadRequest(e.Source);
             }
         }
+        [HttpPost]
+        public IActionResult LogInUser(UserRegisterDto user)
+        {
+            try
+            {
+                return Ok(_userService.RegisterUser(user));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
     }
 }
