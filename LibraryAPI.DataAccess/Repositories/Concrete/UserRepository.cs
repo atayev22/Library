@@ -19,15 +19,15 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
 
         }
 
-        public bool CheckUserByUserName(string userName)
+        public User GetUserByUserName(string userName)
         {
-            var data = dbSet.Where(un => un.UserName == userName);
+            var data = dbSet.Where(un => un.UserName == userName).FirstOrDefault();
             if (data is null)
             {
-                return false;
+                return null;
             }
 
-            return true;
+            return data;
         }
     }
 }

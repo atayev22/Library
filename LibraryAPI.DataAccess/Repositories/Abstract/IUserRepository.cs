@@ -10,6 +10,6 @@ namespace LibraryAPI.DataAccess.Repositories.Abstract
 {
     public interface IUserRepository : IEntityBaseRepository<User>
     {
-        bool CheckUserByUserName(string userName);
+        User GetUserByUserName(string userName);
     }
 }

@@ -3,8 +3,10 @@ using Core.Utilities.Results;
 using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Core.Entities.Dtos.UserDtos;
 using LibraryAPI.Core.Entities.Models;
+using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Migrations;
 using LibraryAPI.DataAccess.Repositories.Abstract;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Org.BouncyCastle.Crypto.Generators;
@@ -36,10 +38,10 @@ namespace LibraryAPI.Business.Services.Concrete
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-                //new Claim(ClaimTypes.Role,user.UserRole)
+                new Claim(ClaimTypes.Role,user.Role)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSetings:Token").Value));    
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSetings:Token").Value));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
             var token = new JwtSecurityToken(
@@ -52,15 +54,21 @@ namespace LibraryAPI.Business.Services.Concrete
             return jwt;
         }
 
-        public ResultInfo LogIn(UserRegisterDto user)
+        public string LogIn(UserRegisterDto user)
         {
-            throw new NotImplementedException();
+            string? token = null;
+            var response = _userRepository.GetUserByUserName(user.UserName);
+            if (VerifyPassHash(user.Password, response.Password) is true)
+            {
+                token = CreateToken(response);
+            }
+            return token;
         }
 
         public ResultInfo RegisterUser(UserRegisterDto user)
         {
-            var response = _userRepository.CheckUserByUserName(user.UserName);
-            if (response is false)
+            var response = _userRepository.GetUserByUserName(user.UserName);
+            if (response is null)
             {
                 CreatePassHash(user.Password, out byte[] passHash);               
 
@@ -87,7 +95,6 @@ namespace LibraryAPI.Business.Services.Concrete
             passHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
         }
-
         public bool VerifyPassHash(string password, string passwordHash)
         {
             string? hashCheck = null;
