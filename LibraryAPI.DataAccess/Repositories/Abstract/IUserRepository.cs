@@ -1,4 +1,5 @@
-﻿using LibraryAPI.DataAccess.Infrastructure.Repositories.Abstract;
+﻿using LibraryAPI.Core.Entities.Models;
+using LibraryAPI.DataAccess.Infrastructure.Repositories.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Repositories.Abstract
 {
-    public interface IUserRepository : IEntityBaseRepository
+    public interface IUserRepository : IEntityBaseRepository<User>
     {
+        bool GetUserByUserName(string userName);
     }
 }

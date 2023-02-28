@@ -13,5 +13,7 @@ namespace LibraryAPI.Business.Services.Abstract
         ResultInfo RegisterUser(UserRegisterDto user);
         ResultInfo LogIn(UserRegisterDto user);
         string CreateToken(User user);
+        void CreatePassHash(string password, out byte[] passwordHash);
+        bool VerifyPassHash(string pass, string passHash);
     }
 }
