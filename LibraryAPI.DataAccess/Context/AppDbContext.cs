@@ -53,17 +53,15 @@ namespace LibraryAPI.DataAccess.Context
             #endregion
 
             #region HasNoKey(FN,SP)
-            //var classTypes = AppDomain.CurrentDomain.GetAssemblies()
-            //           .SelectMany(t => t.GetTypes())
-            //           .Where(t => t.IsClass && t.Name.StartsWith("SP_") || t.Name.StartsWith("FN_"))
-            //           .ToHashSet();
-            //foreach (var type in classTypes)
-            //{
-            //    modelBuilder.Entity(type).HasNoKey();
-            //}
+            var classTypes = AppDomain.CurrentDomain.GetAssemblies()
+                       .SelectMany(t => t.GetTypes())
+                       .Where(t => t.IsClass && t.Name.StartsWith("SP_") || t.Name.StartsWith("FN_"))
+                       .ToHashSet();
+            foreach (var type in classTypes)
+            {
+                modelBuilder.Entity(type).HasNoKey();
+            }
             #endregion
-
-
 
         }
 

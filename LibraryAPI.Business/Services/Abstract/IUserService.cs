@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LibraryAPI.Core.Entities.Dtos.UserDtos;
+using LibraryAPI.Core.Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,10 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Business.Services.Abstract
 {
-    internal class IUserService
+    public interface IUserService
     {
+        ResultInfo RegisterUser(UserRegisterDto user);
+        ResultInfo LogIn(UserRegisterDto user);
+        string CreateToken(User user);
     }
 }
