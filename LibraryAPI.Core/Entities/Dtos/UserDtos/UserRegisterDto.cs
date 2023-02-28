@@ -13,6 +13,6 @@ namespace LibraryAPI.Core.Entities.Dtos.UserDtos
         public string SecondName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public int UserRoleId { get; set; }
+        public string Role { get; set; }
     }
 }

@@ -22,8 +22,10 @@ namespace LibraryAPI.Business.Utilities.DependencyResolvers
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IAuthorService, AuthorService>();
             services.AddScoped<IReaderService, ReaderService>();
+            services.AddScoped<IUserService, UserService>();
 
             //Repositories
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IReaderRepository, ReaderRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
