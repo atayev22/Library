@@ -36,10 +36,10 @@ namespace LibraryAPI.Business.Services.Concrete
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(ClaimTypes.Role,user.UserRole)
+                //new Claim(ClaimTypes.Role,user.UserRole)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSetings:Token").Value));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("AppSetings:Token").Value));    
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
             var token = new JwtSecurityToken(
@@ -59,7 +59,7 @@ namespace LibraryAPI.Business.Services.Concrete
 
         public ResultInfo RegisterUser(UserRegisterDto user)
         {
-            var response = _userRepository.GetUserByUserName(user.UserName);
+            var response = _userRepository.CheckUserByUserName(user.UserName);
             if (response is false)
             {
                 CreatePassHash(user.Password, out byte[] passHash);               
@@ -74,6 +74,7 @@ namespace LibraryAPI.Business.Services.Concrete
                     user.Password = hash;
                     var data = _mapper.Map<User>(user);
 
+                    _userRepository.Add(data);
                 }
                 return ResultInfo.Success;
             }

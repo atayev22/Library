@@ -11,12 +11,11 @@ namespace LibraryAPI.Core.Entities.Models
         public int Id { get; set; }
         public string FirsName { get; set; }
         public string SecondName { get; set; }
-        public string  UserName { get; set; }
+        public string UserName { get; set; }
         public string Password { get; set; }
+        public string Role { get; set; }
         public DateTime RegisterDate { get; set; }
 
-        //Relations
-        public int UserRoleId { get; set; }
-        public UserRole UserRole { get; set; }
+
     }
 }

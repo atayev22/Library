@@ -16,9 +16,10 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
     {
         public UserRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
+
         }
 
-        public bool GetUserByUserName(string userName)
+        public bool CheckUserByUserName(string userName)
         {
             var data = dbSet.Where(un => un.UserName == userName);
             if (data is null)
