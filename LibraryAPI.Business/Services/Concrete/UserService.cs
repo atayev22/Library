@@ -60,6 +60,7 @@ namespace LibraryAPI.Business.Services.Concrete
             var response = _userRepository.GetUserByUserName(user.UserName);
             var data = _mapper.Map<UserDto>(response);
             data.RoleName = response.UserRole.RoleName;
+
             if (VerifyPassHash(user.Password, response.Password) is true)
             {     
                 token = CreateToken(data);
