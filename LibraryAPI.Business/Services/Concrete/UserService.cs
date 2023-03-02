@@ -58,6 +58,7 @@ namespace LibraryAPI.Business.Services.Concrete
         {
             string? token = null;
             var response = _userRepository.GetUserByUserName(user.UserName);
+
             var data = _mapper.Map<UserDto>(response);
             data.RoleName = response.UserRole.RoleName;
 
