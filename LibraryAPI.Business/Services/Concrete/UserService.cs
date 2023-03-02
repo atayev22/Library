@@ -59,6 +59,10 @@ namespace LibraryAPI.Business.Services.Concrete
             string? token = null;
             var response = _userRepository.GetUserByUserName(user.UserName);
 
+            if (response is null)
+            {
+                return "There is no such User";
+            }
             var data = _mapper.Map<UserDto>(response);
             data.RoleName = response.UserRole.RoleName;
 

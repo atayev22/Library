@@ -2,8 +2,10 @@
 using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.Core.Entities.FnModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using System.Data;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,7 +22,7 @@ namespace LibraryAPI.Controllers
             _booksService = booksRepository;
         }
 
-        [HttpGet]
+        [HttpGet,Authorize(Roles ="Admin")]
         public ActionResult GetBooksBrowse()
         {
             try
