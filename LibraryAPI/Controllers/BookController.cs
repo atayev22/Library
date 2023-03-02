@@ -22,7 +22,7 @@ namespace LibraryAPI.Controllers
             _booksService = booksRepository;
         }
 
-        [HttpGet,Authorize(Roles ="admin")]
+        [HttpGet,Authorize]
         public ActionResult GetBooksBrowse()
         {
             try

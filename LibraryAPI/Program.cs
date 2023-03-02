@@ -24,11 +24,6 @@ builder.Services.AddSingleton(mapConfiq.CreateMapper());
 
 #endregion
 
-#region Dependencies
-
-builder.Services.AddProjectDependencies();
-
-#endregion
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -37,6 +32,7 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
     {
+        Description = "Standard Authorization (\"bearer {token}\")",
         In = ParameterLocation.Header,
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey
@@ -59,6 +55,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = false
         };
     });
+
+#endregion
+#region Dependencies
+
+builder.Services.AddProjectDependencies();
 
 #endregion
 var app = builder.Build();
