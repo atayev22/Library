@@ -51,7 +51,7 @@ namespace LibraryAPI.Business.Services.Concrete
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-            return jwt;
+            return "bearer "+jwt;
         }
 
         public string LogIn(UserLogInDto user)

@@ -22,7 +22,8 @@ namespace LibraryAPI.Controllers
             _booksService = booksRepository;
         }
 
-        [HttpGet,Authorize]
+        [HttpGet]
+        [Authorize]
         public ActionResult GetBooksBrowse()
         {
             try
@@ -36,6 +37,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult GetAllBooksByFilter(string nameOrDescription)
         {
             try
@@ -51,6 +53,7 @@ namespace LibraryAPI.Controllers
 
 
         [HttpGet("{categoryId}")]
+        [Authorize]
         public ActionResult GetBooksByCategoryFilter(int categoryId)
         {
             try
@@ -66,6 +69,7 @@ namespace LibraryAPI.Controllers
 
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult GetBook(int id)
         {
             try
@@ -80,6 +84,7 @@ namespace LibraryAPI.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult AddOrUpdateBook([FromBody] BookAddOrUpdateDto model)
         {
             try
@@ -93,6 +98,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles ="admin")]
         public ActionResult DeleteBook(int id)
         {
             try

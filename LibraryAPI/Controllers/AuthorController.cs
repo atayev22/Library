@@ -21,6 +21,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetAuthorBrowse()
         {
             try
@@ -35,6 +36,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetAuthorByNameFilter(string name)
         {
             try
@@ -48,6 +50,7 @@ namespace LibraryAPI.Controllers
             }
         }
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult GetAuthor(int id)
         {
             try
@@ -61,6 +64,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult AddOrUpdateAuthor([FromBody] Author model)
         {
             try
@@ -74,6 +78,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteAuthor(int id)
         {
             try

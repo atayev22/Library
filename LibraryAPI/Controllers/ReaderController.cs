@@ -1,5 +1,6 @@
 ﻿using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.DataAccess.Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetReaderBrowse()
         {
             try
@@ -31,6 +33,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetReaderByNameFilter(string name)
         {
             try
@@ -45,6 +48,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult GetReaderByContactFilter(string contact)
         {
             try
@@ -59,6 +63,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public ActionResult GetReader(int id)
         {
             try
@@ -72,6 +77,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult AddOrUpdateReader([FromBody] Reader model)
         {
             try
@@ -85,6 +91,7 @@ namespace LibraryAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public ActionResult DeleteReader(int id)
         {
             try
