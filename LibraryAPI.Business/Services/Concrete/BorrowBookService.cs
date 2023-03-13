@@ -68,7 +68,7 @@ namespace LibraryAPI.Business.Services.Concrete
             return result;
         }
 
-        public Result GetBorrowBooksByDateInterval(DateTime date1, DateTime date2)
+        public Result GetBorrowBooksByDateInterval(DateTime firstDate, DateTime secondDate)
         {
             throw new NotImplementedException();
         }
