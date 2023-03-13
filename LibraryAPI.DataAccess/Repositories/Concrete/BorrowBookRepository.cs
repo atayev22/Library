@@ -3,6 +3,7 @@ using LibraryAPI.DataAccess.Context;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Infrastructure.Repositories.Concrete;
 using LibraryAPI.DataAccess.Repositories.Abstract;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,11 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
         {
         }
 
-        public IQueryable<Book> GetBorrowBooksBrowse()
+        public IQueryable<BorrowedBook> GetBorrowBooksBrowse()
         {
-            throw new NotImplementedException();
+            return dbSet.Include(b => b.Book)
+                        .Include(r => r.Reader)
+                        .OrderBy(ld => ld.LendDate);
         }
     }
 }
