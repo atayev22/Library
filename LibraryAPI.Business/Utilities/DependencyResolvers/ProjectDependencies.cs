@@ -22,6 +22,7 @@ namespace LibraryAPI.Business.Utilities.DependencyResolvers
             services.AddScoped<IBookService, BookService>();
             services.AddScoped<IAuthorService, AuthorService>();
             services.AddScoped<IReaderService, ReaderService>();
+            services.AddScoped<IBorrowBookService, BorrowBookService>();
             services.AddScoped<IUserService, UserService>();
 
             //Repositories
@@ -29,6 +30,7 @@ namespace LibraryAPI.Business.Utilities.DependencyResolvers
             services.AddScoped<IReaderRepository, ReaderRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<IAuthorRepository, AuthorRepository>();
+            services.AddScoped<IBorrowBookRepository, BorrowBookRepository>();
             services.AddScoped(typeof(IEntityBaseRepository<>), typeof(EntityBaseRepository<>));
 
             //OnConfiguring
