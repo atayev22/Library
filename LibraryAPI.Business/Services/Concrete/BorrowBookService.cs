@@ -50,9 +50,21 @@ namespace LibraryAPI.Business.Services.Concrete
             return result;
         }
 
-        public Result GetBorrowBookByBookId(int bookId)
+        public Result GetBorrowBooksByBookId(int bookId)
         {
-            throw new NotImplementedException();
+            var result = new Result();
+            var response = _borrowBookRepository.GetBorrowBooksByBookId(bookId);
+            var data = from bb in response
+                       select new BorrowBookBrowseDto
+                       {
+                           Id = bb.Id,
+                           LendDate = bb.LendDate,
+                           ReturnDate = bb.ReturnDate,
+                           BookName = bb.Book.Name,
+                           ReaderFullName = string.Concat(bb.Reader.FirstName, " ", bb.Reader.LastName)
+                       };
+            result.Data = data;
+            return result;
         }
 
         public Result GetBorrowBooksByDateInterval(DateTime date1, DateTime date2)
@@ -60,7 +72,7 @@ namespace LibraryAPI.Business.Services.Concrete
             throw new NotImplementedException();
         }
 
-        public Result GetBorrowBookByReaderId(int readreId)
+        public Result GetBorrowBooksByReaderId(int readreId)
         {
             throw new NotImplementedException();
         }
