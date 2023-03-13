@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.Utilities.Results;
 using LibraryAPI.Business.Services.Abstract;
+using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.Core.Entities.Dtos.BorrowBookDtos;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Repositories.Abstract;
@@ -35,17 +36,17 @@ namespace LibraryAPI.Business.Services.Concrete
         public Result GetBorrowBooksBrowse()
         {
             var result = new Result();
-            var response = _borrowBookRepository.GetBorrowBooksBrowse().ToList();
+            var response = _borrowBookRepository.GetBorrowBooksBrowse();
             var data = from bb in response
-                       select new
+                       select new BorrowBookBrowseDto
                        {
-                           bb.Id,
-                           bb.LendDate,
-                           bb.ReturnDate,
+                           Id = bb.Id,
+                           LendDate = bb.LendDate,
+                           ReturnDate = bb.ReturnDate,
                            BookName = bb.Book.Name,
                            ReaderFullName = string.Concat(bb.Reader.FirstName, " ", bb.Reader.LastName)
                        };
-            result.Data = _mapper.Map<List<BorrowBookBrowseDto>>(data);
+            result.Data = data;
             return result;
         }
 

@@ -29,5 +29,18 @@ namespace LibraryAPI.Controllers
                 return BadRequest(e.Source);
             }
         }
+        [HttpGet]
+        [Authorize]
+        public ActionResult GetBorrowBooksByBookId(int bookId)
+        {
+            try
+            {
+                return Ok(_borrowBookService.GetBorrowBooksByBookId(bookId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
     }
 }

@@ -107,11 +107,6 @@ namespace LibraryAPI.Business.Services.Concrete
 
             result.Data = data;
 
-            if (result.Data is null)
-            {
-                return result;
-            }         
-
             return result;
         }
     }

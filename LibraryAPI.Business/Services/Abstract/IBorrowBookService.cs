@@ -12,8 +12,8 @@ namespace LibraryAPI.Business.Services.Abstract
     public interface IBorrowBookService
     {
         Result GetBorrowBooksBrowse();
-        Result GetBorrowBookByReaderId(int readreId);
-        Result GetBorrowBookByBookId(int bookId);
+        Result GetBorrowBooksByReaderId(int readreId);
+        Result GetBorrowBooksByBookId(int bookId);
         Result GetBorrowBooksByDateInterval(DateTime date1, DateTime date2);
         ResultInfo AddOrUpdateBorrowBook(Reader reader);
         ResultInfo DeleteBorrowBook(int id);

@@ -24,5 +24,10 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
                         .Include(r => r.Reader)
                         .OrderBy(ld => ld.LendDate);
         }
+
+        public IQueryable<BorrowedBook> GetBorrowBooksByBookId(int bookId)
+        {
+            return dbSet.Where(b => b.BookId == bookId);
+        }
     }
 }

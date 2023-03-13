@@ -11,5 +11,6 @@ namespace LibraryAPI.DataAccess.Repositories.Abstract
     public interface IBorrowBookRepository : IEntityBaseRepository<BorrowedBook>
     {
         IQueryable<BorrowedBook> GetBorrowBooksBrowse();
+        IQueryable<BorrowedBook> GetBorrowBooksByBookId(int bookId);
     }
 }
