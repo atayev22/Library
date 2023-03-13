@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +29,11 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
         public IQueryable<BorrowedBook> GetBorrowBooksByBookId(int bookId)
         {
             return dbSet.Where(b => b.BookId == bookId);
+        }
+
+        public IQueryable<BorrowedBook> GetBorrowBooksByReaderId(int readerId)
+        {
+            return dbSet.Where(b => b.ReaderId == readerId);
         }
     }
 }

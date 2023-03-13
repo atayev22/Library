@@ -9,6 +9,7 @@ using Org.BouncyCastle.Tls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -74,7 +75,19 @@ namespace LibraryAPI.Business.Services.Concrete
 
         public Result GetBorrowBooksByReaderId(int readreId)
         {
-            throw new NotImplementedException();
+            var result = new Result();
+            var response = _borrowBookRepository.GetBorrowBooksByReaderId(readreId);
+            var data = from bb in response
+                       select new BorrowBookBrowseDto
+                       {
+                           Id = bb.Id,
+                           LendDate = bb.LendDate,
+                           ReturnDate = bb.ReturnDate,
+                           BookName = bb.Book.Name,
+                           ReaderFullName = string.Concat(bb.Reader.FirstName, " ", bb.Reader.LastName)
+                       };
+            result.Data = data;
+            return result;
         }
     }
 }

@@ -12,5 +12,6 @@ namespace LibraryAPI.DataAccess.Repositories.Abstract
     {
         IQueryable<BorrowedBook> GetBorrowBooksBrowse();
         IQueryable<BorrowedBook> GetBorrowBooksByBookId(int bookId);
+        IQueryable<BorrowedBook> GetBorrowBooksByReaderId(int readerId);
     }
 }
