@@ -5,6 +5,7 @@ using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.Core.Entities.Dtos.BorrowBookDtos;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Repositories.Abstract;
+using MimeKit;
 using Org.BouncyCastle.Tls;
 using System;
 using System.Collections.Generic;
@@ -70,7 +71,11 @@ namespace LibraryAPI.Business.Services.Concrete
 
         public Result GetBorrowBooksByDateInterval(DateTime firstDate, DateTime secondDate)
         {
-            throw new NotImplementedException();
+            var result = new Result();
+            var response = _borrowBookRepository.GetBorrowBooksByDateInterval(firstDate, secondDate);
+            result.Data = response;
+
+            return result;
         }
 
         public Result GetBorrowBooksByReaderId(int readreId)

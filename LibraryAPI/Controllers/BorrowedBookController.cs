@@ -57,6 +57,19 @@ namespace LibraryAPI.Controllers
             }
         }
 
-        
+        [HttpGet]
+        [Authorize]
+        public ActionResult GetBorrowBooksByDateInterval(DateTime firstDate, DateTime secondDate)
+        {
+            try
+            {
+                return Ok(_borrowBookService.GetBorrowBooksByDateInterval(firstDate, secondDate));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
+
     }
 }

@@ -31,6 +31,11 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
             return dbSet.Where(b => b.BookId == bookId);
         }
 
+        public IQueryable<BorrowedBook> GetBorrowBooksByDateInterval(DateTime firstDate, DateTime secondDate)
+        {
+            return dbSet.Where(ld => firstDate <= ld.LendDate && ld.LendDate <= secondDate);
+        }
+
         public IQueryable<BorrowedBook> GetBorrowBooksByReaderId(int readerId)
         {
             return dbSet.Where(b => b.ReaderId == readerId);
