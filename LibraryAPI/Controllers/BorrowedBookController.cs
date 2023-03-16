@@ -59,7 +59,7 @@ namespace LibraryAPI.Controllers
 
         [HttpGet]
         [Authorize]
-        public ActionResult GetBorrowBooksByDateInterval(DateTime firstDate, DateTime secondDate)
+        public ActionResult GetBorrowBooksByDateInterval(DateTime firstDate,DateTime secondDate)
         {
             try
             {
