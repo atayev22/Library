@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Entities.Models
 {
-    public class Categorie
+    public class Category
     {
         public int Id { get; set; }
         public string Name { get; set; }
