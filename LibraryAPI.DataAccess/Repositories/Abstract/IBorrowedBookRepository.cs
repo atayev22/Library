@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Repositories.Abstract
 {
-    public interface IBorrowBookRepository : IEntityBaseRepository<BorrowedBook>
+    public interface IBorrowedBookRepository : IEntityBaseRepository<BorrowedBook>
     {
-        IQueryable<BorrowedBook> GetBorrowBooksBrowse();
-        IQueryable<BorrowedBook> GetBorrowBooksByBookId(int bookId);
-        IQueryable<BorrowedBook> GetBorrowBooksByReaderId(int readerId);
-        IQueryable<BorrowedBook> GetBorrowBooksByDateInterval(DateTime firstDate, DateTime secondDate);
+        IQueryable<BorrowedBook> GetBorrowedBooksBrowse();
+        IQueryable<BorrowedBook> GetBorrowedBooksByBookId(int bookId);
+        IQueryable<BorrowedBook> GetBorrowedBooksByReaderId(int readerId);
+        IQueryable<BorrowedBook> GetBorrowedBooksByDateInterval(DateTime firstDate, DateTime secondDate);
     }
 }

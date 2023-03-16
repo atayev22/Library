@@ -13,30 +13,35 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Repositories.Concrete
 {
-    public class BorrowBookRepository : EntityBaseRepository<BorrowedBook>, IBorrowedBookRepository
+    public class BorrowedBookRepository : EntityBaseRepository<BorrowedBook>, IBorrowedBookRepository
     {
-        public BorrowBookRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
+        public BorrowedBookRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
 
-        public IQueryable<BorrowedBook> GetBorrowBooksBrowse()
+        public IQueryable<BorrowedBook> GetBorrowedBooksBrowse()
         {
             return dbSet.Include(b => b.Book)
                         .Include(r => r.Reader)
                         .OrderBy(ld => ld.LendDate);
         }
 
-        public IQueryable<BorrowedBook> GetBorrowBooksByBookId(int bookId)
+        public IQueryable<BorrowedBook> GetBorrowedBooksByBookId(int bookId)
         {
             return dbSet.Where(b => b.BookId == bookId);
         }
 
-        public IQueryable<BorrowedBook> GetBorrowBooksByDateInterval(DateTime firstDate, DateTime secondDate)
+        public IQueryable<BorrowedBook> GetBorrowedBooksByDateInterval(DateTime firstDate, DateTime secondDate)
         {
-            return dbSet.Where(ld => firstDate <= ld.LendDate && ld.LendDate <= secondDate);
+            return dbSet.Where(ld => firstDate <= ld.LendDate && ld.LendDate <= secondDate)
+                        .Include(b => b.Book)
+                        .Include(r => r.Reader)
+                        .Include(b => b.Book.Author)
+                        .Include(b => b.Book.Category)
+                        .Include(b => b.Book.PublishingHouse);
         }
 
-        public IQueryable<BorrowedBook> GetBorrowBooksByReaderId(int readerId)
+        public IQueryable<BorrowedBook> GetBorrowedBooksByReaderId(int readerId)
         {
             return dbSet.Where(b => b.ReaderId == readerId);
         }

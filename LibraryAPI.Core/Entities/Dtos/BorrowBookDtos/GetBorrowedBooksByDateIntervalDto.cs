@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Core.Entities.Dtos.BorrowBookDtos
 {
-    public class BorrowedBookBrowseDto
+    public class GetBorrowedBooksByDateIntervalDto
     {
         public int Id { get; set; }
         public DateTime LendDate { get; set; }
         public DateTime ReturnDate { get; set; }
-        public string BookName { get; set; }
-        public string ReaderFullName { get; set; }
+        public Book Book { get; set; }
+        public Reader Reader { get; set; }
     }
 }

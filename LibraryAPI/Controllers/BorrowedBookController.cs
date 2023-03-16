@@ -1,4 +1,7 @@
 ﻿using LibraryAPI.Business.Services.Abstract;
+using LibraryAPI.Business.Services.Concrete;
+using LibraryAPI.Core.Entities.Dtos.BorrowBookDtos;
+using LibraryAPI.DataAccess.Entities.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -64,6 +67,34 @@ namespace LibraryAPI.Controllers
             try
             {
                 return Ok(_borrowBookService.GetBorrowedBooksByDateInterval(firstDate, secondDate));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public ActionResult AddOrUpdateBorrowedBook(BorrowedBookDto model)
+        {
+            try
+            {
+                return Ok(_borrowBookService.AddOrUpdateBorrowedBook(model));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
+        public ActionResult DeleteBorrowedBook(int id)
+        {
+            try
+            {
+                return Ok(_borrowBookService.DeleteBorrowedBook(id));
             }
             catch (Exception e)
             {

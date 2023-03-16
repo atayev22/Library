@@ -5,6 +5,7 @@ using LibraryAPI.Core.Entities.Dtos.BookDtos;
 using LibraryAPI.Core.Entities.Dtos.BorrowBookDtos;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Repositories.Abstract;
+using LibraryAPI.DataAccess.Repositories.Concrete;
 using MimeKit;
 using Org.BouncyCastle.Tls;
 using System;
@@ -16,31 +17,51 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Business.Services.Concrete
 {
-    public class BorrowBookService : IBorrowBookService
+    public class BorrowedBookService : IBorrowedBookService
     {
-        private readonly IBorrowBookRepository _borrowBookRepository;
+        private readonly IBorrowedBookRepository _borrowBookRepository;
         private readonly IMapper _mapper;
-        public BorrowBookService(IBorrowBookRepository borrowBookRepository, IMapper mapper)
+        public BorrowedBookService(IBorrowedBookRepository borrowBookRepository, IMapper mapper)
         {
             _borrowBookRepository = borrowBookRepository;
             _mapper = mapper;
         }
-        public ResultInfo AddOrUpdateBorrowBook(Reader reader)
+        public ResultInfo AddOrUpdateBorrowedBook(BorrowedBookDto borrowBook)
         {
-            throw new NotImplementedException();
+            var data = _mapper.Map<BorrowedBook>(borrowBook);
+            if (data.Id is 0)
+            {
+                _borrowBookRepository.Add(data);
+            }
+            else
+            {
+                _borrowBookRepository.Update(data);
+            }
+
+            if (data is null)
+            {
+                return ResultInfo.NotImplemented;
+            }
+
+            return ResultInfo.Success;
         }
 
-        public ResultInfo DeleteBorrowBook(int id)
+        public ResultInfo DeleteBorrowedBook(int id)
         {
-            throw new NotImplementedException();
+            var response = _borrowBookRepository.Delete(id);
+            if (response is false)
+            {
+                return ResultInfo.NotFound;
+            }
+            return ResultInfo.Deleted;
         }
 
-        public Result GetBorrowBooksBrowse()
+        public Result GetBorrowedBooksBrowse()
         {
             var result = new Result();
-            var response = _borrowBookRepository.GetBorrowBooksBrowse();
+            var response = _borrowBookRepository.GetBorrowedBooksBrowse();
             var data = from bb in response
-                       select new BorrowBookBrowseDto
+                       select new BorrowedBookBrowseDto
                        {
                            Id = bb.Id,
                            LendDate = bb.LendDate,
@@ -52,12 +73,12 @@ namespace LibraryAPI.Business.Services.Concrete
             return result;
         }
 
-        public Result GetBorrowBooksByBookId(int bookId)
+        public Result GetBorrowedBooksByBookId(int bookId)
         {
             var result = new Result();
-            var response = _borrowBookRepository.GetBorrowBooksByBookId(bookId);
+            var response = _borrowBookRepository.GetBorrowedBooksByBookId(bookId);
             var data = from bb in response
-                       select new BorrowBookBrowseDto
+                       select new BorrowedBookBrowseDto
                        {
                            Id = bb.Id,
                            LendDate = bb.LendDate,
@@ -69,21 +90,23 @@ namespace LibraryAPI.Business.Services.Concrete
             return result;
         }
 
-        public Result GetBorrowBooksByDateInterval(DateTime firstDate, DateTime secondDate)
+        public Result GetBorrowedBooksByDateInterval(DateTime firstDate, DateTime secondDate)
         {
             var result = new Result();
-            var response = _borrowBookRepository.GetBorrowBooksByDateInterval(firstDate, secondDate);
-            result.Data = response;
 
+            var response = _borrowBookRepository.GetBorrowedBooksByDateInterval(firstDate, secondDate);
+            var data = _mapper.Map<IEnumerable<GetBorrowedBooksByDateIntervalDto>>(response.ToList());
+
+            result.Data = data;
             return result;
         }
 
-        public Result GetBorrowBooksByReaderId(int readreId)
+        public Result GetBorrowedBooksByReaderId(int readreId)
         {
             var result = new Result();
-            var response = _borrowBookRepository.GetBorrowBooksByReaderId(readreId);
+            var response = _borrowBookRepository.GetBorrowedBooksByReaderId(readreId);
             var data = from bb in response
-                       select new BorrowBookBrowseDto
+                       select new BorrowedBookBrowseDto
                        {
                            Id = bb.Id,
                            LendDate = bb.LendDate,

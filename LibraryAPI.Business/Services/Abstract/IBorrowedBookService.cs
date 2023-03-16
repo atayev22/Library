@@ -1,4 +1,5 @@
 ﻿using Core.Utilities.Results;
+using LibraryAPI.Core.Entities.Dtos.BorrowBookDtos;
 using LibraryAPI.DataAccess.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Business.Services.Abstract
 {
-    public interface IBorrowBookService
+    public interface IBorrowedBookService
     {
-        Result GetBorrowBooksBrowse();
-        Result GetBorrowBooksByReaderId(int readreId);
-        Result GetBorrowBooksByBookId(int bookId);
-        Result GetBorrowBooksByDateInterval(DateTime firstDate, DateTime secondDate);
-        ResultInfo AddOrUpdateBorrowBook(Reader reader);
-        ResultInfo DeleteBorrowBook(int id);
+        Result GetBorrowedBooksBrowse();
+        Result GetBorrowedBooksByReaderId(int readreId);
+        Result GetBorrowedBooksByBookId(int bookId);
+        Result GetBorrowedBooksByDateInterval(DateTime firstDate, DateTime secondDate);
+        ResultInfo AddOrUpdateBorrowedBook(BorrowedBookDto reader);
+        ResultInfo DeleteBorrowedBook(int id);
     }
 }
