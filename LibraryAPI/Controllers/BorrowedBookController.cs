@@ -22,7 +22,7 @@ namespace LibraryAPI.Controllers
         {
             try
             {
-                return Ok(_borrowBookService.GetBorrowBooksBrowse());
+                return Ok(_borrowBookService.GetBorrowedBooksBrowse());
             }
             catch (Exception e)
             {
@@ -35,7 +35,7 @@ namespace LibraryAPI.Controllers
         {
             try
             {
-                return Ok(_borrowBookService.GetBorrowBooksByBookId(bookId));
+                return Ok(_borrowBookService.GetBorrowedBooksByBookId(bookId));
             }
             catch (Exception e)
             {
@@ -49,7 +49,7 @@ namespace LibraryAPI.Controllers
         {
             try
             {
-                return Ok(_borrowBookService.GetBorrowBooksByReaderId(readerId));
+                return Ok(_borrowBookService.GetBorrowedBooksByReaderId(readerId));
             }
             catch (Exception e)
             {
@@ -63,7 +63,7 @@ namespace LibraryAPI.Controllers
         {
             try
             {
-                return Ok(_borrowBookService.GetBorrowBooksByDateInterval(firstDate, secondDate));
+                return Ok(_borrowBookService.GetBorrowedBooksByDateInterval(firstDate, secondDate));
             }
             catch (Exception e)
             {
