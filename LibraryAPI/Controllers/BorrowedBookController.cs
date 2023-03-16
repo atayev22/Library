@@ -9,9 +9,9 @@ namespace LibraryAPI.Controllers
     [ApiController]
     public class BorrowedBookController : ControllerBase
     {
-        private readonly IBorrowBookService _borrowBookService;
+        private readonly IBorrowedBookService _borrowBookService;
 
-        public BorrowedBookController(IBorrowBookService borrowBookService)
+        public BorrowedBookController(IBorrowedBookService borrowBookService)
         {
             _borrowBookService = borrowBookService;
         }

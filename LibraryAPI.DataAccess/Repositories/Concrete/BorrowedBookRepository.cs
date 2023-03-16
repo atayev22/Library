@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.DataAccess.Repositories.Concrete
 {
-    public class BorrowBookRepository : EntityBaseRepository<BorrowedBook>, IBorrowBookRepository
+    public class BorrowBookRepository : EntityBaseRepository<BorrowedBook>, IBorrowedBookRepository
     {
         public BorrowBookRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {

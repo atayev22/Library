@@ -29,7 +29,7 @@ namespace LibraryApi.BaseLog.Utilities.Mapper
             #endregion
 
             #region BorrowBook
-            CreateMap<BorrowedBook, BorrowBookBrowseDto>().ReverseMap();
+            CreateMap<BorrowedBook, BorrowedBookBrowseDto>().ReverseMap();
             #endregion
 
             #region User
