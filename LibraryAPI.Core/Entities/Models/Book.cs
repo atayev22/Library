@@ -20,7 +20,7 @@ namespace LibraryAPI.DataAccess.Entities.Models
         public int AuthorId { get; set; }
         public Author Author { get; set; }
         public int CategoryId { get; set; }
-        public Categorie Category { get; set; }
+        public Category Category { get; set; }
         public int PublishingHouseId { get; set; }
         public PublishingHouse PublishingHouse { get; set; }
     }

@@ -29,7 +29,7 @@ namespace LibraryAPI.Business.Services.Concrete
             _authorRepository = authorRepository;
             _mapper = mapper;
         }
-        public Result GetAuthorsBrose()
+        public Result GetAuthorsBrowse()
         {
             var result = new Result();
 

@@ -10,7 +10,7 @@ namespace LibraryAPI.Business.Services.Abstract
 {
     public interface IAuthorService
     {
-        Result GetAuthorsBrose();
+        Result GetAuthorsBrowse();
         Result GetAuthorById(int id);
         Result GetAuthorByName(string name);
         ResultInfo AddOrUpdateAuthor(Author author);

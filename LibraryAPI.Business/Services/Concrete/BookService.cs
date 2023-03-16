@@ -81,7 +81,7 @@ namespace LibraryAPI.Business.Services.Concrete
             return result;
         }
 
-        public Result GetBooksByFilter(string nameOrDescription) //IEnumerable<FN_GetBooksByFilter>
+        public Result GetBooksByFilter(string nameOrDescription) 
         {
             var result = new Result();
             List<SqlParameter> parameters = new List<SqlParameter>();

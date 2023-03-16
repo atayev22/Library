@@ -26,7 +26,7 @@ namespace LibraryAPI.Controllers
         {
             try
             {
-                return Ok(_authorService.GetAuthorsBrose());
+                return Ok(_authorService.GetAuthorsBrowse());
             }
             catch (Exception e)
             {

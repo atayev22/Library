@@ -15,7 +15,7 @@ namespace LibraryAPI.Core.Entities.Dtos.BookDtos
         public int PageCount { get; set; }
         public string Description { get; set; }
         public Author Author { get; set; }
-        public Categorie Category { get; set; }
+        public Category Category { get; set; }
         public PublishingHouse PublishingHouse { get; set; }
         public DateTime PubDate { get; set; }
 
