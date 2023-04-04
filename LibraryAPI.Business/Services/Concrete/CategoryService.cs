@@ -66,6 +66,8 @@ namespace LibraryAPI.Business.Services.Concrete
                 PageCount = pageCount
             };
 
+            using var date = new CategoriesBrowseDto()
+
             result.Data = data;
             return result;
         }

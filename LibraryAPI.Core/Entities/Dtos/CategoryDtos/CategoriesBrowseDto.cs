@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibraryAPI.Core.Entities.Dtos.CategoryDtos
 {
-    public class CategoriesBrowseDto
+    public class CategoriesBrowseDto 
     {
         public IEnumerable<Category> Categories { get; set; }
         public int PageCount { get; set; }
