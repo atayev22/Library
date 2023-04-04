@@ -58,7 +58,7 @@ namespace LibraryAPI.Business.Services.Concrete
         {
             var result = new Result();
 
-            var response = _categoryRepository.GetCategoriesBrowse(paginator);
+            var response = _categoryRepository.GetCategoriesBrowse(paginator,out int pageCount);
 
             result.Data = response;
             return result;

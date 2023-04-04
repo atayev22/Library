@@ -18,9 +18,9 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
         {
         }
 
-        public IQueryable<Category> GetCategoriesBrowse(PageHandler paginator)
+        public IQueryable<Category> GetCategoriesBrowse(PageHandler paginator,out int pageCount)
         {
-            var pageCount = _dbContext.Categories.Count() / paginator.VisibleItemCount;
+            pageCount = _dbContext.Categories.Count() / paginator.VisibleItemCount;
             var response = _dbContext.Categories
                 .Skip((paginator.Page - 1) * paginator.VisibleItemCount)
                 .Take(paginator.VisibleItemCount);

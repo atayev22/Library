@@ -11,6 +11,6 @@ namespace LibraryAPI.DataAccess.Repositories.Abstract
 {
     public interface ICategoryRepository : IEntityBaseRepository<Category>
     {
-        IQueryable<Category> GetCategoriesBrowse(PageHandler paginator);
+        IQueryable<Category> GetCategoriesBrowse(PageHandler paginator, out int pageCount);
     }
 }
