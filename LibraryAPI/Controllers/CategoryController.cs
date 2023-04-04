@@ -1,5 +1,6 @@
 ﻿using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.DataAccess.Entities.Models;
+using LibraryAPI.DataAccess.Utilities.Tools.EfCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,13 +19,13 @@ namespace LibraryAPI.Controllers
             _categoryService = categoryService;
         }
 
-        [HttpGet]
+        [HttpPost]
         [Authorize]
-        public IActionResult GetCategoriesBrowse()
+        public IActionResult GetCategoriesBrowse(PageHandler paginator)
         {
             try
             {
-                return Ok(_categoryService.GetCategoriesBrowse());
+                return Ok(_categoryService.GetCategoriesBrowse(paginator));
             }
             catch (Exception e)
             {

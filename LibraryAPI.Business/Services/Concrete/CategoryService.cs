@@ -5,6 +5,7 @@ using LibraryAPI.Core.Entities.Dtos.AuthorDtos;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Repositories.Abstract;
 using LibraryAPI.DataAccess.Repositories.Concrete;
+using LibraryAPI.DataAccess.Utilities.Tools.EfCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,11 +54,11 @@ namespace LibraryAPI.Business.Services.Concrete
             return ResultInfo.Deleted;
         }
 
-        public Result GetCategoriesBrowse()
+        public Result GetCategoriesBrowse(PageHandler paginator)
         {
             var result = new Result();
 
-            var response = _categoryRepository.GetAll();
+            var response = _categoryRepository.GetCategoriesBrowse(paginator);
 
             result.Data = response;
             return result;
