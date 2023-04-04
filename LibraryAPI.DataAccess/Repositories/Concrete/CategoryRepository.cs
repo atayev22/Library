@@ -20,7 +20,7 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
 
         public IQueryable<Category> GetCategoriesBrowse(PageHandler paginator,out int pageCount)
         {
-            pageCount = _dbContext.Categories.Count() / paginator.VisibleItemCount;
+            pageCount = (int)Math.Ceiling(_dbContext.Categories.Count() / (decimal)paginator.VisibleItemCount);
             var response = _dbContext.Categories
                 .Skip((paginator.Page - 1) * paginator.VisibleItemCount)
                 .Take(paginator.VisibleItemCount);
