@@ -2,6 +2,7 @@
 using Core.Utilities.Results;
 using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Core.Entities.Dtos.AuthorDtos;
+using LibraryAPI.Core.Entities.Dtos.CategoryDtos;
 using LibraryAPI.DataAccess.Entities.Models;
 using LibraryAPI.DataAccess.Repositories.Abstract;
 using LibraryAPI.DataAccess.Repositories.Concrete;
@@ -57,10 +58,15 @@ namespace LibraryAPI.Business.Services.Concrete
         public Result GetCategoriesBrowse(PageHandler paginator)
         {
             var result = new Result();
-
             var response = _categoryRepository.GetCategoriesBrowse(paginator,out int pageCount);
 
-            result.Data = response;
+            var data = new CategoriesBrowseDto
+            {
+                Categories = response,
+                PageCount = pageCount
+            };
+
+            result.Data = data;
             return result;
         }
 
