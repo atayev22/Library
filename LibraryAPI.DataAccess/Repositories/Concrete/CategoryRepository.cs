@@ -22,6 +22,7 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
         {
             pageCount = (int)Math.Ceiling(_dbContext.Categories.Count() / (decimal)paginator.VisibleItemCount);
             var response = _dbContext.Categories
+                .OrderByDescending(c => c.Id)
                 .Skip((paginator.Page - 1) * paginator.VisibleItemCount)
                 .Take(paginator.VisibleItemCount);
 
