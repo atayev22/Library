@@ -98,10 +98,10 @@ namespace LibraryAPI.Business.Services.Concrete
 
             return ResultInfo.AlreadyExists;
         }
-        public void CreatePassHash(string password, out byte[] passHash)
+        public void CreatePassHash(string password, out byte[] passwordHash)
         {
             SHA512 hmac = SHA512.Create();
-            passHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+            passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
         }
         public bool VerifyPassHash(string password, string passwordHash)
