@@ -18,5 +18,6 @@ namespace LibraryAPI.Business.Services.Abstract
         Result GetBorrowedBooksByDateInterval(DateTime firstDate, DateTime secondDate);
         ResultInfo AddOrUpdateBorrowedBook(BorrowedBookDto reader);
         ResultInfo DeleteBorrowedBook(int id);
+        ResultInfo SendMailToReader(int readerId);
     }
 }

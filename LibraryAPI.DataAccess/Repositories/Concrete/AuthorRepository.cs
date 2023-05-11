@@ -17,5 +17,11 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
         public AuthorRepository(AppDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
         {
         }
+
+        public IQueryable<Author> GetAuthorByNameOrSurnaame(string name)
+        {
+            string nameLower = name.ToLower();
+            return dbSet.Where(a => a.FirstName.ToLower().Contains(nameLower) || a.LastName.ToLower().Contains(nameLower));
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace LibraryAPI.DataAccess.Repositories.Abstract
 {
     public interface IAuthorRepository: IEntityBaseRepository<Author>
     {
+        IQueryable<Author> GetAuthorByNameOrSurnaame(string name);
     }
 }

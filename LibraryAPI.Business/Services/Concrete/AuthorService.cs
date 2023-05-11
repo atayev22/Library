@@ -55,10 +55,8 @@ namespace LibraryAPI.Business.Services.Concrete
         public Result GetAuthorByName(string name)
         {
             var result = new Result();
-            List<SqlParameter> parameters = new List<SqlParameter>();
-            parameters.AddParam(nameof(name), name);
 
-            var response = DbTools.ExecuteProcedure<SP_GetAuthorByName>("dbo.SP_GetAuthorByName", parameters);
+            var response = _authorRepository.GetAuthorByNameOrSurnaame(name);
             result.Data = response;
 
             return result;

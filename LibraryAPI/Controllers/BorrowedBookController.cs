@@ -48,6 +48,20 @@ namespace LibraryAPI.Controllers
 
         [HttpGet]
         [Authorize]
+        public ActionResult SendMailToReader(int readerId)
+        {
+            try
+            {
+                return Ok(_borrowBookService.SendMailToReader(readerId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Source);
+            }
+        }
+
+        [HttpGet]
+        [Authorize]
         public ActionResult GetBorrowBooksByReaderId(int readerId)
         {
             try

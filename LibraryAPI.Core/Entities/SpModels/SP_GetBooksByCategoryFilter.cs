@@ -16,7 +16,7 @@ namespace LibraryAPI.Core.Entities.SpModels
         public int Qty { get; set; }
         public int PageCount { get; set; }
         public string Description { get; set; }
-        public string AuthorName { get; set; }
+        public string AuthorFullName { get; set; }
         public string PublishingHouseAdress { get; set; }
         public DateTime PubDate { get; set; }
     }

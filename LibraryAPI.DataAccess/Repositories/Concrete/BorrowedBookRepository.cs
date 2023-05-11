@@ -43,7 +43,8 @@ namespace LibraryAPI.DataAccess.Repositories.Concrete
 
         public IQueryable<BorrowedBook> GetBorrowedBooksByReaderId(int readerId)
         {
-            return dbSet.Where(b => b.ReaderId == readerId);
+            return dbSet.Where(b => b.ReaderId == readerId)
+                        .Include(b=> b.Book);
         }
     }
 }
