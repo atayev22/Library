@@ -1,4 +1,5 @@
-﻿using LibraryAPI.Core.Entities.Dtos.UserDtos;
+﻿using Core.Utilities.Results;
+using LibraryAPI.Core.Entities.Dtos.UserDtos;
 using LibraryAPI.Core.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace LibraryAPI.Business.Services.Abstract
     public interface IUserService
     {
         ResultInfo RegisterUser(UserRegisterDto user);
-        string LogIn(UserLogInDto user);
+        Result LogIn(UserLogInDto user);
         string CreateToken(UserDto user);
         void CreatePassHash(string password, out byte[] passwordHash);
         bool VerifyPassHash(string pass, string passHash);

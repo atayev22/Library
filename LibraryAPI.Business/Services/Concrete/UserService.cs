@@ -54,14 +54,16 @@ namespace LibraryAPI.Business.Services.Concrete
             return "bearer "+jwt;
         }
 
-        public string LogIn(UserLogInDto user)
+        public Result LogIn(UserLogInDto user)
         {
+            var result = new Result();
             string? token = null;
             var response = _userRepository.GetUserByUserName(user.UserName);
 
             if (response is null)
             {
-                return "There is no such User";
+                result.ResultInfo = ResultInfo.AlreadyExists;
+                return result;
             }
             var data = _mapper.Map<UserDto>(response);
             data.RoleName = response.UserRole.RoleName;
@@ -70,7 +72,8 @@ namespace LibraryAPI.Business.Services.Concrete
             {     
                 token = CreateToken(data);
             }
-            return token;
+            result.Data = token;
+            return result;
         }
 
         public ResultInfo RegisterUser(UserRegisterDto user)
