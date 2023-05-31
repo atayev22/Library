@@ -24,24 +24,38 @@ namespace LibraryAPI.Business.Services.Concrete
     public class BorrowedBookService : IBorrowedBookService
     {
         private readonly IBorrowedBookRepository _borrowBookRepository;
+        private readonly IBookRepository _bookRepository;
         private readonly IReaderRepository _readerRepository;
         private readonly IMapper _mapper;
-        public BorrowedBookService(IBorrowedBookRepository borrowBookRepository, IReaderRepository readerRepository, IMapper mapper)
+        public BorrowedBookService(IBorrowedBookRepository borrowBookRepository,IBookRepository bookRepository, IReaderRepository readerRepository, IMapper mapper)
         {
             _borrowBookRepository = borrowBookRepository;
             _readerRepository = readerRepository;
+            _bookRepository = bookRepository;
             _mapper = mapper;
         }
         public ResultInfo AddOrUpdateBorrowedBook(BorrowedBookDto borrowBook)
         {
+            var bookResponse = _bookRepository.Get(borrowBook.BookId);
             var data = _mapper.Map<BorrowedBook>(borrowBook);
-            if (data.Id is 0)
+
+            if (bookResponse.Qty is 0)
             {
-                _borrowBookRepository.Add(data);
+                return ResultInfo.BlockedOperation;
             }
             else
             {
-                _borrowBookRepository.Update(data);
+                if (data.Id is 0)
+                {
+                    _borrowBookRepository.Add(data);
+                    bookResponse.Qty -= 1;
+                    _bookRepository.Update(bookResponse);
+                }
+                else
+                {
+                    _borrowBookRepository.Update(data);
+                }
+
             }
 
             if (data is null)
