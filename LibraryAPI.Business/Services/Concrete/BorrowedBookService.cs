@@ -55,7 +55,6 @@ namespace LibraryAPI.Business.Services.Concrete
                 {
                     _borrowBookRepository.Update(data);
                 }
-
             }
 
             if (data is null)
