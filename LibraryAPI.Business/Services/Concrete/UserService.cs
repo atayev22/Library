@@ -62,7 +62,7 @@ namespace LibraryAPI.Business.Services.Concrete
 
             if (response is null)
             {
-                result.ResultInfo = ResultInfo.AlreadyExists;
+                result.ResultInfo = ResultInfo.NotFound;
                 return result;
             }
             var data = _mapper.Map<UserDto>(response);
