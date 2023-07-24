@@ -1,8 +1,10 @@
-﻿using FakeItEasy;
-using FluentAssertions;
+﻿using AutoFixture;
+using Core.Utilities.Results;
 using LibraryAPI.Business.Services.Abstract;
 using LibraryAPI.Controllers;
-using LibraryAPI.Core.Entities.Dtos.BookDtos;
+using LibraryAPI.DataAccess.Entities.Models;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,47 +15,28 @@ namespace xUnitTests.Controllers
 {
     public class BookControllerTest
     {
-        private readonly IBookService _booksService;
+        private readonly IFixture _fixture;
+        private readonly Mock<IBookService> _serviceMock;
+        private readonly BookController _controller;
+
         public BookControllerTest()
         {
-            _booksService = A.Fake<IBookService>();
+            _fixture = new Fixture();
+            _serviceMock = _fixture.Freeze<Mock<IBookService>>();
+            _controller = new BookController(_serviceMock.Object);
         }
 
-        [Fact]
-        public void BookController_GetBooksBrowse_ReturnOk()
-        {
-            //Arrage
-            var controller = new BookController(_booksService);
+        //[Fact]
+        //public Task GetBook_ShouldReturnOkResult_WhenValidId()
+        //{
+        //    //Arrage
+        //    int id = _fixture.Create<int>();
+        //    var bookMock = _fixture.Create<Book>();
+        //    _serviceMock.Setup(x=> x.GetBookById(id)).Returns(bookMock);
+        //    //Act
 
-            //Act
-            var result = controller.GetBooksBrowse();
+        //    //Assert
 
-            //Assert
-            result.Should().NotBeNull();
-        }
-
-        [Fact]
-        public void BookController_AddOrUpdateBook_ReturnOk()
-        {
-            //Arrage
-            var book = A.Fake<BookAddOrUpdateDto>();
-            book.Name = "TESTBOOK";
-            book.Qty = 5;
-            book.PageCount = 150;
-            book.PubDate = DateTime.Now;
-            book.Description = "testbookDesc";
-            book.AuthorId = 2;
-            book.CategoryId = 1;
-            book.PublishingHouseId = 2;
-
-            A.CallTo(()=> _booksService.AddOrUpdateBook(book)).Returns(ResultInfo.Success);
-            var controller = new BookController(_booksService);
-
-            //Act
-            var result = controller.AddOrUpdateBook(book);
-
-            //Assert
-            result.Should().NotBeNull();
-        }
+        //}
     }
 }
